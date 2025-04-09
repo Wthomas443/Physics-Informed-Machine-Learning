@@ -28,25 +28,25 @@ This study formulates the reconstruction problem as a regularized least squares 
 
 ### 2.1 Spherical Harmonic Basis Functions
 
-Spherical harmonics $$Y_\ell^m(\theta, \phi)$$ are eigenfunctions of the Laplacian operator on the sphere $$S^2$$. They arise as solutions to the angular part of Laplace's equation when expressed in spherical coordinates. Formally, the basis functions satisfy:
+Spherical harmonics \(Y_\ell^m(\theta, \phi)\) are eigenfunctions of the Laplacian operator on the sphere \(S^2\). They arise as solutions to the angular part of Laplace's equation when expressed in spherical coordinates. Formally, the basis functions satisfy:
 
-$$\nabla^2_{\Omega} Y_\ell^m = -\ell(\ell+1) Y_\ell^m$$
+\[\nabla^2_{\Omega} Y_\ell^m = -\ell(\ell+1) Y_\ell^m\]
 
-where $$\nabla^2_{\Omega}$$ denotes the Laplacian on the sphere and $$(\theta, \phi)$$ are the usual spherical angles.
+where \(\nabla^2_{\Omega}\) denotes the Laplacian on the sphere and \((\theta, \phi)\) are the usual spherical angles.
 
-Each $$Y_\ell^m$$ is indexed by a degree $$\ell \geq 0$$ and an order $$-\ell \leq m \leq \ell$$. They form a complete, orthonormal basis for the space $$L^2(S^2)$$, allowing any square-integrable scalar function on the sphere to be expressed as a weighted sum.
+Each \(Y_\ell^m\) is indexed by a degree \(\ell \geq 0\) and an order \(-\ell \leq m \leq \ell\). They form a complete, orthonormal basis for the space \(L^2(S^2)\), allowing any square-integrable scalar function on the sphere to be expressed as a weighted sum.
 
 ### 2.2 Orthogonality and Inner Products
 
 The spherical harmonics obey the orthogonality condition:
 
-$$\langle Y_\ell^m, Y_{\ell'}^{m'} \rangle = \delta_{\ell \ell'} \delta_{m m'}$$
+\[\langle Y_\ell^m, Y_{\ell'}^{m'} \rangle = \delta_{\ell \ell'} \delta_{m m'}\]
 
 which implies that their Fourier coefficients can be uniquely determined by projection onto the basis.
 
 Gradients of spherical harmonics are also orthogonal:
 
-$$\langle \nabla Y_\ell^m, \nabla Y_{\ell'}^{m'} \rangle = \ell(\ell+1) \delta_{\ell \ell'} \delta_{m m'}$$
+\[\langle \nabla Y_\ell^m, \nabla Y_{\ell'}^{m'} \rangle = \ell(\ell+1) \delta_{\ell \ell'} \delta_{m m'}\]
 
 This allows higher-order smoothness penalties to be incorporated naturally in the spectral domain.
 
@@ -56,7 +56,7 @@ This allows higher-order smoothness penalties to be incorporated naturally in th
 
 ### 3.1 Problem Setup
 
-Given noisy observations $$\{(\theta_i, \phi_i, f_i)\}_{i=1}^n$$, we construct an approximation:
+Given noisy observations \(\{(\theta_i, \phi_i, f_i)\}_{i=1}^n\), we construct an approximation:
 
 $$S f(\theta, \phi) = \sum_{\ell=0}^L \sum_{m=-\ell}^\ell v_{\ell m} Y_\ell^m(\theta, \phi)$$
 
