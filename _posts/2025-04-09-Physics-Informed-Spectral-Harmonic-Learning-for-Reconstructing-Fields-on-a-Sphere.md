@@ -1,5 +1,5 @@
 ---
-title: "Physics-Informed Spectral Harmonic Learning for Reconstructing Fields on a Sphere"
+title: "Physics-Informed-Spectral-Harmonic-Learning-for-Reconstructing-Fields-on-a-Sphere"
 date: "2025-04-09"
 ---
 William Thomas – University of Nottingham
