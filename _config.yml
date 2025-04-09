@@ -1,1 +1,6 @@
 theme: minima
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: katex
+  syntax_highlighter: rouge
