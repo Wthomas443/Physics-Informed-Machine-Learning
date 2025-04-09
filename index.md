@@ -1,6 +1,7 @@
 ---
 title: Physics-Informed Spectral Harmonic Learning for Reconstructing Fields on the Sphere  
-**William Thomas – University of Nottingham**
+---
+William Thomas – University of Nottingham
 
 ## Overview
 
@@ -8,7 +9,7 @@ This work presents a framework for reconstructing scalar and vector fields defin
 
 The methodology is validated on both synthetic and real-world datasets, including global temperature and wind data, and demonstrates robustness in recovering spatial structure under physical constraints such as smoothness and incompressibility.
 
----
+
 
 ## Spectral Approximation on the Sphere
 
