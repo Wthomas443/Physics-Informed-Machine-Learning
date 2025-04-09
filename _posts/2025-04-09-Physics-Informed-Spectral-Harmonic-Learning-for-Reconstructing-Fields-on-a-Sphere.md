@@ -28,7 +28,7 @@ This study formulates the reconstruction problem as a regularized least squares 
 
 ### 2.1 Spherical Harmonic Basis Functions
 
-Spherical harmonics $Y_\ell^m(\theta, \phi)$ are eigenfunctions of the Laplacian operator on the sphere $ S^2 $. They arise as solutions to the angular part of Laplace's equation when expressed in spherical coordinates. Formally, the basis functions satisfy:
+Spherical harmonics $'Y_\ell^m(\theta, \phi)'$ are eigenfunctions of the Laplacian operator on the sphere $' S^2 '$. They arise as solutions to the angular part of Laplace's equation when expressed in spherical coordinates. Formally, the basis functions satisfy:
 
 $\nabla^2_{\Omega} Y_\ell^m = -\ell(\ell+1) Y_\ell^m$
 
