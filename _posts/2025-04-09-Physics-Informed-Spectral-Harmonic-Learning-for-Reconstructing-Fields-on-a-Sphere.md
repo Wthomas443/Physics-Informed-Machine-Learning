@@ -28,25 +28,25 @@ This study formulates the reconstruction problem as a regularized least squares 
 
 ### 2.1 Spherical Harmonic Basis Functions
 
-Spherical harmonics $ Y_\ell^m(\theta, \phi) $ are eigenfunctions of the Laplacian operator on the sphere $ S^2 $. They arise as solutions to the angular part of Laplace's equation when expressed in spherical coordinates. Formally, the basis functions satisfy:
+Spherical harmonics $Y_\ell^m(\theta, \phi)$ are eigenfunctions of the Laplacian operator on the sphere $ S^2 $. They arise as solutions to the angular part of Laplace's equation when expressed in spherical coordinates. Formally, the basis functions satisfy:
 
-$ \nabla^2_{\Omega} Y_\ell^m = -\ell(\ell+1) Y_\ell^m $
+$\nabla^2_{\Omega} Y_\ell^m = -\ell(\ell+1) Y_\ell^m$
 
-where $ \nabla^2_{\Omega} $ denotes the Laplacian on the sphere and $ (\theta, \phi) $ are the usual spherical angles.
+where $\nabla^2_{\Omega}$ denotes the Laplacian on the sphere and $(\theta, \phi)$ are the usual spherical angles.
 
-Each $ Y_\ell^m $ is indexed by a degree $ \ell \geq 0 $ and an order $ -\ell \leq m \leq \ell $. They form a complete, orthonormal basis for the space $ L^2(S^2) $, allowing any square-integrable scalar function on the sphere to be expressed as a weighted sum.
+Each $Y_\ell^m$ is indexed by a degree $\ell \geq 0$ and an order $-\ell \leq m \leq \ell$. They form a complete, orthonormal basis for the space $L^2(S^2)$, allowing any square-integrable scalar function on the sphere to be expressed as a weighted sum.
 
 ### 2.2 Orthogonality and Inner Products
 
 The spherical harmonics obey the orthogonality condition:
 
-$ \langle Y_\ell^m, Y_{\ell'}^{m'} \rangle = \delta_{\ell \ell'} \delta_{m m'} $
+$\langle Y_\ell^m, Y_{\ell'}^{m'} \rangle = \delta_{\ell \ell'} \delta_{m m'}$
 
 which implies that their Fourier coefficients can be uniquely determined by projection onto the basis.
 
 Gradients of spherical harmonics are also orthogonal:
 
-$ \langle \nabla Y_\ell^m, \nabla Y_{\ell'}^{m'} \rangle = \ell(\ell+1) \delta_{\ell \ell'} \delta_{m m'} $
+$\langle \nabla Y_\ell^m, \nabla Y_{\ell'}^{m'} \rangle = \ell(\ell+1) \delta_{\ell \ell'} \delta_{m m'}$
 
 This allows higher-order smoothness penalties to be incorporated naturally in the spectral domain.
 
@@ -62,17 +62,17 @@ $S f(\theta, \phi) = \sum_{\ell=0}^L \sum_{m=-\ell}^\ell v_{\ell m} Y_\ell^m(\th
 
 and solve the regularized least squares problem:
 
-$ \min_{v_{\ell m}} \sum_{i=1}^n |S f(\theta_i, \phi_i) - f_i|^2 + \lambda \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} (\ell(\ell+1))^k |v_{\ell m}|^2 $
+$\min_{v_{\ell m}} \sum_{i=1}^n |S f(\theta_i, \phi_i) - f_i|^2 + \lambda \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} (\ell(\ell+1))^k |v_{\ell m}|^2$
 
-Here, $ \lambda $ controls the strength of regularization and $ k $ determines the order of the Sobolev seminorm.
+Here, $\lambda$ controls the strength of regularization and $k$ determines the order of the Sobolev seminorm.
 
 ### 3.2 Matrix Formulation
 
-The problem is linear in the coefficients. Let $ A \in \mathbb{C}^{n \times N} $ be the design matrix, where each row corresponds to the evaluation of the harmonics at a data point. Then the normal equations are:
+The problem is linear in the coefficients. Let $A \in \mathbb{C}^{n \times N}$ be the design matrix, where each row corresponds to the evaluation of the harmonics at a data point. Then the normal equations are:
 
-$ v = (A^H A + \lambda M_k)^{-1} A^H f $
+$v = (A^H A + \lambda M_k)^{-1} A^H f$
 
-where $ M_k $ is a diagonal matrix with $ (\ell(\ell+1))^k $ along the diagonal.
+where $M_k$ is a diagonal matrix with $(\ell(\ell+1))^k$ along the diagonal.
 
 ---
 
@@ -80,14 +80,14 @@ where $ M_k $ is a diagonal matrix with $ (\ell(\ell+1))^k $ along the diagonal.
 
 Synthetic scalar fields are constructed from known combinations of spherical harmonics, allowing ground-truth comparison.
 
-- **Experiment 1 (L=4, n=100):** The model successfully recovers the field with minimal error. Overfitting is observed for $ L > 4 $.
+- **Experiment 1 (L=4, n=100):** The model successfully recovers the field with minimal error. Overfitting is observed for $L > 4$.
 - **Experiment 2 (L=16, n=400):** Demonstrates the need for increased data to resolve higher-frequency components.
 
 A heuristic relationship is empirically derived:
 
-$ L \approx \frac{6}{7}\sqrt{n} $
+$L \approx \frac{6}{7}\sqrt{n}$
 
-Regularization using $ H^2 $ seminorms further reduces overfitting and leads to smoother reconstructions.
+Regularization using $H^2$ seminorms further reduces overfitting and leads to smoother reconstructions.
 
 ---
 
@@ -95,11 +95,11 @@ Regularization using $ H^2 $ seminorms further reduces overfitting and leads to 
 
 ### 5.1 Small Dataset (n = 100)
 
-Temperature measurements for 100 cities are reconstructed using $ L = 9 $. Cross-validation identifies optimal $ \lambda $ using test-error minimization. Despite sparse sampling, large-scale trends are captured.
+Temperature measurements for 100 cities are reconstructed using $L = 9$. Cross-validation identifies optimal $\lambda$ using test-error minimization. Despite sparse sampling, large-scale trends are captured.
 
 ### 5.2 Larger Dataset (n = 3510)
 
-A higher-resolution dataset allows use of $ L = 12 $, improving reconstruction fidelity. The method struggles in unobserved regions (oceans, poles) due to lack of data. Regularization reduces artifacts and produces realistic reconstructions over land.
+A higher-resolution dataset allows use of $L = 12$, improving reconstruction fidelity. The method struggles in unobserved regions (oceans, poles) due to lack of data. Regularization reduces artifacts and produces realistic reconstructions over land.
 
 ---
 
@@ -109,13 +109,13 @@ A higher-resolution dataset allows use of $ L = 12 $, improving reconstruction f
 
 To reconstruct incompressible vector fields, a divergence-free basis is used:
 
-$ \Phi_\ell^m(\theta, \phi) = \mathbf{r} \times \nabla Y_\ell^m(\theta, \phi) $
+$\Phi_\ell^m(\theta, \phi) = \mathbf{r} \times \nabla Y_\ell^m(\theta, \phi)$
 
-This guarantees that the approximation $ \mathbf{u}(\theta, \phi) = \sum v_{\ell m} \Phi_\ell^m $ satisfies $ \nabla \cdot \mathbf{u} = 0 $.
+This guarantees that the approximation $\mathbf{u}(\theta, \phi) = \sum v_{\ell m} \Phi_\ell^m$ satisfies $\nabla \cdot \mathbf{u} = 0$.
 
 ### 6.2 Implementation and Results
 
-Design matrices for the $ \hat{\theta} $ and $ \hat{\phi} $ components are constructed, and the same least squares strategy is applied. Results on real wind data (n = 100, n = 500) demonstrate strong agreement in low-latitude regions, with challenges near singularities and under-sampled areas.
+Design matrices for the $\hat{\theta}$ and $\hat{\phi}$ components are constructed, and the same least squares strategy is applied. Results on real wind data (n = 100, n = 500) demonstrate strong agreement in low-latitude regions, with challenges near singularities and under-sampled areas.
 
 ---
 
