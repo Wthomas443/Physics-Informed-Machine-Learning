@@ -56,9 +56,9 @@ This allows higher-order smoothness penalties to be incorporated naturally in th
 
 ### 3.1 Problem Setup
 
-Given noisy observations $ \{(\theta_i, \phi_i, f_i)\}_{i=1}^n $, we construct an approximation:
+Given noisy observations $\{(\theta_i, \phi_i, f_i)\}_{i=1}^n$, we construct an approximation:
 
-$ S f(\theta, \phi) = \sum_{\ell=0}^L \sum_{m=-\ell}^\ell v_{\ell m} Y_\ell^m(\theta, \phi) $
+$S f(\theta, \phi) = \sum_{\ell=0}^L \sum_{m=-\ell}^\ell v_{\ell m} Y_\ell^m(\theta, \phi)$
 
 and solve the regularized least squares problem:
 
