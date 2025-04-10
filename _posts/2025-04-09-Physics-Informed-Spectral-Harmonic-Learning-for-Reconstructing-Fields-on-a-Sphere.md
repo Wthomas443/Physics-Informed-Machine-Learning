@@ -29,13 +29,13 @@ This study formulates the reconstruction problem as a regularized least squares 
 
 ### 2.1 Spherical Harmonic Basis Functions
 
-Spherical harmonics $Y_\ell^m(\theta, \phi)$ are eigenfunctions of the Laplacian operator on the sphere $S^2$. They arise as solutions to the angular part of Laplace's equation in spherical coordinates:
+Spherical harmonics $$Y_\ell^m(\theta, \phi)$$ are eigenfunctions of the Laplacian operator on the sphere $$S^2$$. They arise as solutions to the angular part of Laplace's equation in spherical coordinates:
 
 $$
 \nabla^2_{\Omega} Y_\ell^m = -\ell(\ell+1) Y_\ell^m
 $$
 
-Each function is indexed by degree $\ell \geq 0$ and order $-\ell \leq m \leq \ell$, and the set $\{Y_\ell^m\}$ forms an orthonormal basis for $L^2(S^2)$.
+Each function is indexed by degree $$\ell \geq 0$$ and order $$-\ell \leq m \leq \ell$$, and the set $$\{Y_\ell^m\}$$ forms an orthonormal basis for $$L^2(S^2)$$.
 
 ### 2.2 Orthogonality and Inner Products
 
@@ -57,7 +57,7 @@ These properties allow for efficient projection and Sobolev-type penalization.
 
 ## 3. Scalar Field Reconstruction
 
-Given noisy observations $\{(\theta_i, \phi_i, f_i)\}_{i=1}^n$, we approximate the scalar field as:
+Given noisy observations $$\{(\theta_i, \phi_i, f_i)\}_{i=1}^n$$, we approximate the scalar field as:
 
 $$
 Sf(\theta, \phi) = \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} v_{\ell m} Y_\ell^m(\theta, \phi)
@@ -81,15 +81,15 @@ $$
 v = (A^H A + \lambda M_k)^{-1} A^H f
 $$
 
-where $M_k$ is a diagonal matrix with $(\ell(\ell+1))^k$ on the diagonal. The approach supports efficient solvers and cross-validation strategies for tuning $\lambda$.
+where $$M_k$$ is a diagonal matrix with $$(\ell(\ell+1))^k$$ on the diagonal. The approach supports efficient solvers and cross-validation strategies for tuning $$\lambda$$.
 
 ---
 
 ## 5. Synthetic Field Experiments
 
-### 5.1 Varying $L$ and $n$
+### 5.1 Varying $$L$$ and $$n$$
 
-For synthetic data constructed from known harmonics, reconstruction error decreases with increased sample size $n$. Empirically, the optimal truncation degree $L$ scales with:
+For synthetic data constructed from known harmonics, reconstruction error decreases with increased sample size $$n$$. Empirically, the optimal truncation degree $$L$$ scales with:
 
 $$
 L \approx \frac{6}{7} \sqrt{n}
@@ -97,7 +97,7 @@ $$
 
 ### 5.2 Regularization Effects
 
-Without regularization, overfitting is observed as $L$ increases. Introducing Sobolev regularization (e.g., $H^2$) results in smoother reconstructions with better generalization.
+Without regularization, overfitting is observed as $$L$$ increases. Introducing Sobolev regularization (e.g., $$H^2$$) results in smoother reconstructions with better generalization.
 
 ---
 
@@ -105,11 +105,11 @@ Without regularization, overfitting is observed as $L$ increases. Introducing So
 
 ### 6.1 Low-Resolution Dataset ($n = 100$)
 
-Using $L = 9$ and $H^2$ regularization, the model captures broad-scale temperature gradients, but struggles in unsampled regions (e.g., oceans, poles).
+Using $$L = 9$$ and $$H^2$$ regularization, the model captures broad-scale temperature gradients, but struggles in unsampled regions (e.g., oceans, poles).
 
 ### 6.2 High-Resolution Dataset ($n = 3510$)
 
-Using $L = 12$ with the same framework yields improved detail and spatial resolution. Errors are reduced especially over land, demonstrating scalability.
+Using $$L = 12$$ with the same framework yields improved detail and spatial resolution. Errors are reduced especially over land, demonstrating scalability.
 
 ---
 
@@ -121,7 +121,7 @@ $$
 \Phi_\ell^m(\theta, \phi) = \mathbf{r} \times \nabla Y_\ell^m(\theta, \phi)
 $$
 
-This guarantees $\nabla \cdot \mathbf{u} = 0$ by construction.
+This guarantees $$\nabla \cdot \mathbf{u} = 0$$ by construction.
 
 We expand:
 
@@ -135,7 +135,7 @@ and fit coefficients using a similar regularized least squares procedure.
 
 ## 8. Real Wind Data Results
 
-The method was applied to wind field observations at $n = 100$ and $n = 500$ sites. Reconstructions were accurate at low latitudes, with expected difficulties near the poles due to coordinate singularities and sparse data.
+The method was applied to wind field observations at $$n = 100$$ and $$n = 500$$ sites. Reconstructions were accurate at low latitudes, with expected difficulties near the poles due to coordinate singularities and sparse data.
 
 ---
 
@@ -144,7 +144,7 @@ The method was applied to wind field observations at $n = 100$ and $n = 500$ sit
 This work proposes a spectral learning framework based on spherical harmonics and vector harmonics for reconstructing fields on the sphere. Key contributions include:
 
 - Use of Sobolev seminorm regularization in spectral fitting
-- Empirical validation of $L$–$n$ scaling laws
+- Empirical validation of $$L$$–$$n$$ scaling laws
 - Application to real climate data
 - Extension to incompressible vector fields
 
