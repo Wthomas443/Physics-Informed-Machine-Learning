@@ -12,33 +12,50 @@ layout: nil
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg-color: #1e1e1e;
+      --text-color: #ffffff;
+      --accent-color: #9cdcfe;
+      --code-bg: #2e2e2e;
+      --toc-bg: #2c2c2c;
+    }
+
+    body.light-mode {
+      --bg-color: #ffffff;
+      --text-color: #111111;
+      --accent-color: #007acc;
+      --code-bg: #f5f5f5;
+      --toc-bg: #f0f0f0;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #1e1e1e;
-      color: #ffffff;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       line-height: 1.6;
       min-height: 100vh;
       display: flex;
       flex-direction: row;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     h1, h2, h3, h4 {
       font-weight: 600;
       margin-top: 2rem;
-      color: #ffffff;
+      color: var(--text-color);
     }
 
     pre, code {
-      background-color: #2e2e2e;
+      background-color: var(--code-bg);
       padding: 0.2em 0.4em;
       border-radius: 4px;
       font-family: monospace;
     }
 
     a {
-      color: #9cdcfe;
+      color: var(--accent-color);
     }
 
     .math-display {
@@ -49,13 +66,13 @@ layout: nil
     nav.toc {
       width: 250px;
       padding: 2rem 1rem;
-      background-color: #2c2c2c;
+      background-color: var(--toc-bg);
       position: sticky;
       top: 0;
       height: 100vh;
       overflow-y: auto;
       flex-shrink: 0;
-      transition: transform 0.3s ease;
+      transition: background-color 0.3s;
     }
 
     nav.toc h2 {
@@ -71,19 +88,26 @@ layout: nil
       margin-bottom: 0.5rem;
     }
 
-    .toggle-button {
-      display: none;
+    .toggle-button, .mode-toggle {
       position: absolute;
       top: 1rem;
-      left: 1rem;
-      background: #444;
-      color: #fff;
+      background: var(--code-bg);
+      color: var(--text-color);
       border: none;
       padding: 0.5rem 1rem;
       font-size: 1rem;
       border-radius: 4px;
       cursor: pointer;
       z-index: 1000;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .toggle-button {
+      left: 1rem;
+    }
+
+    .mode-toggle {
+      right: 1rem;
     }
 
     main {
@@ -124,27 +148,55 @@ layout: nil
     ☰ Menu
   </button>
 
-  <nav class="toc">
-    <h2>Contents</h2>
-    <ul>
-      <li><a href="#abstract">Abstract</a></li>
-      <li><a href="#1-introduction">1. Introduction</a></li>
-      <li><a href="#2-spectral-harmonics-on-the-sphere">2. Spectral Harmonics on the Sphere</a></li>
-      <li><a href="#3-scalar-field-reconstruction">3. Scalar Field Reconstruction</a></li>
-      <li><a href="#4-numerical-implementation">4. Numerical Implementation</a></li>
-      <li><a href="#5-synthetic-field-experiments">5. Synthetic Field Experiments</a></li>
-      <li><a href="#6-application-to-temperature-data">6. Application to Temperature Data</a></li>
-      <li><a href="#7-vector-field-reconstruction">7. Vector Field Reconstruction</a></li>
-      <li><a href="#8-real-wind-data-results">8. Real Wind Data Results</a></li>
-      <li><a href="#9-conclusion">9. Conclusion</a></li>
-    </ul>
-  </nav>
+  <button class="mode-toggle" onclick="document.body.classList.toggle('light-mode')">
+    🌓 Toggle Theme
+  </button>
+
+<nav class="toc">
+  <div style="margin-bottom: 2rem; text-align: center;">
+    <div style="font-size: 2rem;">👤</div>
+    <div style="font-weight: bold; margin: 0.5rem 0;">William Thomas</div>
+    <div style="margin-bottom: 0.5rem;">
+      <span style="font-size: 1rem;">🏫 University of Nottingham</span>
+    </div>
+    <div>
+      <a href="https://github.com/Wthomas443" target="_blank" style="display: inline-block; margin: 0.25rem;">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub" width="20" style="vertical-align: middle; filter: invert(1);">
+        <span style="margin-left: 0.3rem;">GitHub</span>
+      </a>
+      <br>
+      <a href="https://www.linkedin.com/in/william-thomas/" target="_blank" style="display: inline-block; margin: 0.25rem;">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn" width="20" style="vertical-align: middle; filter: invert(1);">
+        <span style="margin-left: 0.3rem;">LinkedIn</span>
+      </a>
+    </div>
+  </div>
+
+  <h2>Contents</h2>
+  <ul>
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#1-introduction">1. Introduction</a></li>
+    <li><a href="#2-spectral-harmonics-on-the-sphere">2. Spectral Harmonics on the Sphere</a></li>
+    <li><a href="#3-scalar-field-reconstruction">3. Scalar Field Reconstruction</a></li>
+    <li><a href="#4-numerical-implementation">4. Numerical Implementation</a></li>
+    <li><a href="#5-synthetic-field-experiments">5. Synthetic Field Experiments</a></li>
+    <li><a href="#6-application-to-temperature-data">6. Application to Temperature Data</a></li>
+    <li><a href="#7-vector-field-reconstruction">7. Vector Field Reconstruction</a></li>
+    <li><a href="#8-real-wind-data-results">8. Real Wind Data Results</a></li>
+    <li><a href="#9-conclusion">9. Conclusion</a></li>
+  </ul>
+</nav>
+
+
 
   <main>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <a href="/" style="text-decoration: none; padding: 0.5rem 1rem; background: var(--code-bg); color: var(--text-color); border-radius: 4px;">⬅ Home</a>
+    </div>
     <header>
       <h1>{{ page.title }}</h1>
       {% if page.author %}<p><strong>By:</strong> {{ page.author }}</p>{% endif %}
-      <p><a href="https://github.com/Wthomas443" target="_blank">GitHub</a></p>
+      <p><a href="https://github.com/Wthomas443" target="_blank">View on GitHub</a></p>
     </header>
 
     {{ content }}
@@ -156,4 +208,3 @@ layout: nil
   </main>
 </body>
 </html>
-
