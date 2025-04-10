@@ -117,26 +117,33 @@ layout: nil
       margin: auto;
     }
 
-    @media (max-width: 768px) {
-      body {
-        flex-direction: column;
-      }
-      .toggle-button {
-        display: block;
-      }
-      nav.toc {
-        width: 100%;
-        height: auto;
-        position: relative;
-        transform: translateY(-100%);
-      }
-      nav.toc.active {
-        transform: translateY(0);
-      }
-      main {
-        padding: 1rem;
-      }
-    }
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  nav.toc {
+    display: none;
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 1rem;
+    background-color: var(--toc-bg);
+  }
+
+  nav.toc.active {
+    display: block;
+  }
+
+  .toggle-button {
+    display: block;
+  }
+
+  main {
+    padding: 1rem;
+  }
+}
+
   </style>
   <!-- MathJax -->
   <script type="text/javascript" async
@@ -150,9 +157,6 @@ layout: nil
   </button>
 
 <nav class="toc">
-  <button class="toggle-button" onclick="document.querySelector('nav.toc').classList.toggle('active')">
-    ☰ Menu
-  </button>
   <div style="margin-bottom: 2rem; text-align: center;">
     <div style="font-size: 2rem;">👤</div>
     <div style="font-weight: bold; margin: 0.5rem 0;">William Thomas</div>
@@ -189,6 +193,7 @@ layout: nil
 
 
 
+
   <main>
     <div style="display: flex; justify-content: space-between; align-items: center;">
       <a href="https://wthomas443.github.io/Physics-Informed-Machine-Learning/" 
@@ -200,7 +205,6 @@ layout: nil
     <header>
       <h1>{{ page.title }}</h1>
       {% if page.author %}<p><strong>By:</strong> {{ page.author }}</p>{% endif %}
-      <p><a href="https://github.com/Wthomas443" target="_blank">View on GitHub</a></p>
     </header>
 
     {{ content }}
@@ -210,5 +214,15 @@ layout: nil
       <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name | default: 'William Thomas' }}</p>
     </footer>
   </main>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggleBtn = document.querySelector('.toggle-button');
+    const toc = document.querySelector('nav.toc');
+    toggleBtn.addEventListener('click', () => {
+      toc.classList.toggle('active');
+    });
+  });
+</script>
+
 </body>
 </html>
