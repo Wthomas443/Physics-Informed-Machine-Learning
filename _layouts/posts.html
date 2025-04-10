@@ -14,12 +14,14 @@ layout: nil
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1rem;
+      margin: 0;
+      padding: 0;
       background-color: #1e1e1e;
       color: #ffffff;
       line-height: 1.6;
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
     }
     h1, h2, h3, h4 {
       font-weight: 600;
@@ -40,10 +42,13 @@ layout: nil
       text-align: center;
     }
     nav.toc {
-      margin-bottom: 2rem;
-      padding: 1rem;
+      width: 250px;
+      padding: 2rem 1rem;
       background-color: #2c2c2c;
-      border-radius: 8px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
     }
     nav.toc h2 {
       margin-top: 0;
@@ -55,6 +60,12 @@ layout: nil
     nav.toc li {
       margin-bottom: 0.5rem;
     }
+    main {
+      flex-grow: 1;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
   </style>
   <!-- MathJax -->
   <script type="text/javascript" async
@@ -62,14 +73,8 @@ layout: nil
   </script>
 </head>
 <body>
-  <header>
-    <h1>{{ page.title }}</h1>
-    {% if page.author %}<p><strong>By:</strong> {{ page.author }}</p>{% endif %}
-    <p><a href="https://github.com/Wthomas443" target="_blank">GitHub</a></p>
-  </header>
-
   <nav class="toc">
-    <h2>Contents</h2>
+    <h2>Table of Contents</h2>
     <ul>
       <li><a href="#abstract">Abstract</a></li>
       <li><a href="#1-introduction">1. Introduction</a></li>
@@ -85,12 +90,19 @@ layout: nil
   </nav>
 
   <main>
-    {{ content }}
-  </main>
+    <header>
+      <h1>{{ page.title }}</h1>
+      {% if page.author %}<p><strong>By:</strong> {{ page.author }}</p>{% endif %}
+      <p><a href="https://github.com/yourusername" target="_blank">View on GitHub</a></p>
+    </header>
 
-  <footer>
-    <hr>
-    <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name | default: 'William Thomas' }}</p>
-  </footer>
+    {{ content }}
+
+    <footer>
+      <hr>
+      <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name | default: 'Your Name' }}</p>
+    </footer>
+  </main>
 </body>
 </html>
+
