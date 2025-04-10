@@ -9,7 +9,7 @@ William Thomas – University of Nottingham
 
 This dissertation explores the application of spectral harmonic methods—specifically spherical and vector spherical harmonics—for reconstructing noisy scalar and vector fields defined on the surface of a sphere. Motivated by the physical geometry of the Earth and the need for interpretable and data-efficient reconstructions of climate variables such as temperature and wind, the investigation proposes a physics-informed approach that bridges ideas from classical approximation theory and machine learning.
 
-A least squares framework is used to fit spherical harmonic expansions to data, with additional regularization terms derived from Sobolev seminorms. These regularization strategies are designed to penalize non-smooth or physically implausible solutions, aligning the reconstructions with the governing physical principles of the underlying fields (e.g., diffusion, incompressibility). The methodology is validated on both synthetic data and real-world datasets including global climate measurements. For vector field reconstruction, divergence-free vector spherical harmonics are employed to ensure that physical constraints like mass conservation are strictly enforced.
+A least squares framework is used to fit spherical harmonic expansions to data, with additional regularization terms derived from Sobolev seminorms. These regularization strategies are designed to penalize non-smooth or physically implausible solutions, aligning the reconstructions with the governing physical principles of the underlying fields (e.g., diffusion, incompressibility). The methodology is validated on both synthetic data and real-world datasets including global climate measurements. For vector fields, a divergence-free basis using vector spherical harmonics is constructed to model wind fields.
 
 The study finds that spherical harmonics provide a highly efficient basis for spatially coherent reconstruction on the sphere, and that careful regularization is crucial in balancing accuracy and overfitting. These insights form a foundation for future extensions into spatiotemporal modeling and adaptive spectral learning strategies.
 
@@ -29,107 +29,132 @@ This study formulates the reconstruction problem as a regularized least squares 
 
 ### 2.1 Spherical Harmonic Basis Functions
 
-Spherical harmonics \(Y_\ell^m(\theta, \phi)\) are eigenfunctions of the Laplacian operator on the sphere \(S^2\). They arise as solutions to the angular part of Laplace's equation when expressed in spherical coordinates. Formally, the basis functions satisfy:
+Spherical harmonics $Y_\ell^m(\theta, \phi)$ are eigenfunctions of the Laplacian operator on the sphere $S^2$. They arise as solutions to the angular part of Laplace's equation in spherical coordinates:
 
-\[\nabla^2_{\Omega} Y_\ell^m = -\ell(\ell+1) Y_\ell^m\]
+$$
+\nabla^2_{\Omega} Y_\ell^m = -\ell(\ell+1) Y_\ell^m
+$$
 
-where \(\nabla^2_{\Omega}\) denotes the Laplacian on the sphere and \((\theta, \phi)\) are the usual spherical angles.
-
-Each \(Y_\ell^m\) is indexed by a degree \(\ell \geq 0\) and an order \(-\ell \leq m \leq \ell\). They form a complete, orthonormal basis for the space \(L^2(S^2)\), allowing any square-integrable scalar function on the sphere to be expressed as a weighted sum.
+Each function is indexed by degree $\ell \geq 0$ and order $-\ell \leq m \leq \ell$, and the set $\{Y_\ell^m\}$ forms an orthonormal basis for $L^2(S^2)$.
 
 ### 2.2 Orthogonality and Inner Products
 
-The spherical harmonics obey the orthogonality condition:
+The harmonics satisfy:
 
-\[\langle Y_\ell^m, Y_{\ell'}^{m'} \rangle = \delta_{\ell \ell'} \delta_{m m'}\]
+$$
+\langle Y_\ell^m, Y_{\ell'}^{m'} \rangle = \delta_{\ell \ell'} \delta_{m m'}
+$$
 
-which implies that their Fourier coefficients can be uniquely determined by projection onto the basis.
+and their gradients:
 
-Gradients of spherical harmonics are also orthogonal:
+$$
+\langle \nabla Y_\ell^m, \nabla Y_{\ell'}^{m'} \rangle = \ell(\ell+1) \delta_{\ell \ell'} \delta_{m m'}
+$$
 
-\[\langle \nabla Y_\ell^m, \nabla Y_{\ell'}^{m'} \rangle = \ell(\ell+1) \delta_{\ell \ell'} \delta_{m m'}\]
-
-This allows higher-order smoothness penalties to be incorporated naturally in the spectral domain.
-
----
-
-## 3. Scalar Field Reconstruction with Regularized Least Squares
-
-### 3.1 Problem Setup
-
-Given noisy observations \(\{(\theta_i, \phi_i, f_i)\}_{i=1}^n\), we construct an approximation:
-
-$$S f(\theta, \phi) = \sum_{\ell=0}^L \sum_{m=-\ell}^\ell v_{\ell m} Y_\ell^m(\theta, \phi)$$
-
-and solve the regularized least squares problem:
-
-$$\min_{v_{\ell m}} \sum_{i=1}^n |S f(\theta_i, \phi_i) - f_i|^2 + \lambda \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} (\ell(\ell+1))^k |v_{\ell m}|^2$$
-
-Here, $$\lambda$$ controls the strength of regularization and $$k$$ determines the order of the Sobolev seminorm.
-
-### 3.2 Matrix Formulation
-
-The problem is linear in the coefficients. Let $$A \in \mathbb{C}^{n \times N}$$ be the design matrix, where each row corresponds to the evaluation of the harmonics at a data point. Then the normal equations are:
-
-$$v = (A^H A + \lambda M_k)^{-1} A^H f$$
-
-where $$M_k$$ is a diagonal matrix with $$(\ell(\ell+1))^k$$ along the diagonal.
+These properties allow for efficient projection and Sobolev-type penalization.
 
 ---
 
-## 4. Experiments on Synthetic Scalar Fields
+## 3. Scalar Field Reconstruction
 
-Synthetic scalar fields are constructed from known combinations of spherical harmonics, allowing ground-truth comparison.
+Given noisy observations $\{(\theta_i, \phi_i, f_i)\}_{i=1}^n$, we approximate the scalar field as:
 
-- **Experiment 1 (L=4, n=100):** The model successfully recovers the field with minimal error. Overfitting is observed for $$L > 4$$.
-- **Experiment 2 (L=16, n=400):** Demonstrates the need for increased data to resolve higher-frequency components.
+$$
+Sf(\theta, \phi) = \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} v_{\ell m} Y_\ell^m(\theta, \phi)
+$$
 
-A heuristic relationship is empirically derived:
+We solve the optimization problem:
 
-$$L \approx \frac{6}{7}\sqrt{n}$$
+$$
+\min_{v_{\ell m}} \sum_{i=1}^n |Sf(\theta_i, \phi_i) - f_i|^2 + \lambda \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} (\ell(\ell+1))^k |v_{\ell m}|^2
+$$
 
-Regularization using $$H^2$$ seminorms further reduces overfitting and leads to smoother reconstructions.
-
----
-
-## 5. Application to Real Temperature Data
-
-### 5.1 Small Dataset (n = 100)
-
-Temperature measurements for 100 cities are reconstructed using $$L = 9$$. Cross-validation identifies optimal $$\lambda$$ using test-error minimization. Despite sparse sampling, large-scale trends are captured.
-
-### 5.2 Larger Dataset (n = 3510)
-
-A higher-resolution dataset allows use of $$L = 12$$, improving reconstruction fidelity. The method struggles in unobserved regions (oceans, poles) due to lack of data. Regularization reduces artifacts and produces realistic reconstructions over land.
+This balances fitting accuracy with smoothness or energy constraints, depending on $k$.
 
 ---
 
-## 6. Vector Field Reconstruction with Incompressibility
+## 4. Numerical Implementation
 
-### 6.1 Vector Spherical Harmonics
+Using matrix notation, let $A$ be the design matrix, and $f$ the vector of observations. Then the regularized solution is given by:
 
-To reconstruct incompressible vector fields, a divergence-free basis is used:
+$$
+v = (A^H A + \lambda M_k)^{-1} A^H f
+$$
 
-$$\Phi_\ell^m(\theta, \phi) = \mathbf{r} \times \nabla Y_\ell^m(\theta, \phi)$$
-
-This guarantees that the approximation $$\mathbf{u}(\theta, \phi) = \sum v_{\ell m} \Phi_\ell^m$$ satisfies $$\nabla \cdot \mathbf{u} = 0$$.
-
-### 6.2 Implementation and Results
-
-Design matrices for the $$\hat{\theta}$$ and $$\hat{\phi}$$ components are constructed, and the same least squares strategy is applied. Results on real wind data (n = 100, n = 500) demonstrate strong agreement in low-latitude regions, with challenges near singularities and under-sampled areas.
+where $M_k$ is a diagonal matrix with $(\ell(\ell+1))^k$ on the diagonal. The approach supports efficient solvers and cross-validation strategies for tuning $\lambda$.
 
 ---
 
-## 7. Conclusion and Outlook
+## 5. Synthetic Field Experiments
 
-This study shows that physics-informed spectral harmonic learning provides an effective and interpretable method for field reconstruction on the sphere. The use of Sobolev regularization ensures physically plausible approximations, and vector spherical harmonics enforce divergence-free constraints.
+### 5.1 Varying $L$ and $n$
+
+For synthetic data constructed from known harmonics, reconstruction error decreases with increased sample size $n$. Empirically, the optimal truncation degree $L$ scales with:
+
+$$
+L \approx \frac{6}{7} \sqrt{n}
+$$
+
+### 5.2 Regularization Effects
+
+Without regularization, overfitting is observed as $L$ increases. Introducing Sobolev regularization (e.g., $H^2$) results in smoother reconstructions with better generalization.
+
+---
+
+## 6. Application to Temperature Data
+
+### 6.1 Low-Resolution Dataset ($n = 100$)
+
+Using $L = 9$ and $H^2$ regularization, the model captures broad-scale temperature gradients, but struggles in unsampled regions (e.g., oceans, poles).
+
+### 6.2 High-Resolution Dataset ($n = 3510$)
+
+Using $L = 12$ with the same framework yields improved detail and spatial resolution. Errors are reduced especially over land, demonstrating scalability.
+
+---
+
+## 7. Vector Field Reconstruction
+
+To approximate divergence-free vector fields, we use vector spherical harmonics:
+
+$$
+\Phi_\ell^m(\theta, \phi) = \mathbf{r} \times \nabla Y_\ell^m(\theta, \phi)
+$$
+
+This guarantees $\nabla \cdot \mathbf{u} = 0$ by construction.
+
+We expand:
+
+$$
+\mathbf{u}(\theta, \phi) = \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} v_{\ell m} \Phi_\ell^m(\theta, \phi)
+$$
+
+and fit coefficients using a similar regularized least squares procedure.
+
+---
+
+## 8. Real Wind Data Results
+
+The method was applied to wind field observations at $n = 100$ and $n = 500$ sites. Reconstructions were accurate at low latitudes, with expected difficulties near the poles due to coordinate singularities and sparse data.
+
+---
+
+## 9. Conclusion
+
+This work proposes a spectral learning framework based on spherical harmonics and vector harmonics for reconstructing fields on the sphere. Key contributions include:
+
+- Use of Sobolev seminorm regularization in spectral fitting
+- Empirical validation of $L$–$n$ scaling laws
+- Application to real climate data
+- Extension to incompressible vector fields
 
 ### Future Work
 
-- Incorporating temporal dynamics (e.g., Fourier or Laguerre time bases)
-- Adaptive selection of $$ L $$ and $$ \lambda $$
-- Application to non-spherical manifolds
-- Bayesian formulations for uncertainty quantification
+- Add time dependence (e.g., Fourier or Laguerre expansions)
+- Explore non-spherical geometries
+- Use Bayesian formulations for uncertainty quantification
+- Investigate adaptive spectral refinement
 
-This framework bridges the gap between classical approximation theory and modern data-driven modeling for geophysical applications.
+---
+
 
