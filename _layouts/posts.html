@@ -15,23 +15,45 @@ layout: nil
     body {
       font-family: 'Inter', sans-serif;
       max-width: 800px;
-      margin: auto;
-      padding: 2rem;
+      margin: 2rem auto;
+      padding: 1rem;
+      background-color: #1e1e1e;
+      color: #ffffff;
       line-height: 1.6;
     }
     h1, h2, h3, h4 {
       font-weight: 600;
       margin-top: 2rem;
+      color: #ffffff;
     }
     pre, code {
-      background-color: #f6f8fa;
+      background-color: #2e2e2e;
       padding: 0.2em 0.4em;
       border-radius: 4px;
       font-family: monospace;
     }
+    a {
+      color: #9cdcfe;
+    }
     .math-display {
       margin: 1em 0;
       text-align: center;
+    }
+    nav.toc {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background-color: #2c2c2c;
+      border-radius: 8px;
+    }
+    nav.toc h2 {
+      margin-top: 0;
+    }
+    nav.toc ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    nav.toc li {
+      margin-bottom: 0.5rem;
     }
   </style>
   <!-- MathJax -->
@@ -43,7 +65,24 @@ layout: nil
   <header>
     <h1>{{ page.title }}</h1>
     {% if page.author %}<p><strong>By:</strong> {{ page.author }}</p>{% endif %}
+    <p><a href="https://github.com/Wthomas443" target="_blank">View on GitHub</a></p>
   </header>
+
+  <nav class="toc">
+    <h2>Table of Contents</h2>
+    <ul>
+      <li><a href="#abstract">Abstract</a></li>
+      <li><a href="#1-introduction">1. Introduction</a></li>
+      <li><a href="#2-spectral-harmonics-on-the-sphere">2. Spectral Harmonics on the Sphere</a></li>
+      <li><a href="#3-scalar-field-reconstruction">3. Scalar Field Reconstruction</a></li>
+      <li><a href="#4-numerical-implementation">4. Numerical Implementation</a></li>
+      <li><a href="#5-synthetic-field-experiments">5. Synthetic Field Experiments</a></li>
+      <li><a href="#6-application-to-temperature-data">6. Application to Temperature Data</a></li>
+      <li><a href="#7-vector-field-reconstruction">7. Vector Field Reconstruction</a></li>
+      <li><a href="#8-real-wind-data-results">8. Real Wind Data Results</a></li>
+      <li><a href="#9-conclusion">9. Conclusion</a></li>
+    </ul>
+  </nav>
 
   <main>
     {{ content }}
@@ -51,7 +90,7 @@ layout: nil
 
   <footer>
     <hr>
-    <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name | default: 'Your Name' }}</p>
+    <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name | default: 'William Thomas' }}</p>
   </footer>
 </body>
 </html>
