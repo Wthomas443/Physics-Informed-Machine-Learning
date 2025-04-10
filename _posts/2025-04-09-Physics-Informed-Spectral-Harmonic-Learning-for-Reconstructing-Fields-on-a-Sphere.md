@@ -5,7 +5,7 @@ date: "2025-04-09"
 ---
 William Thomas – University of Nottingham
 
-## Abstract
+## Summary
 
 This dissertation explores the application of spectral harmonic methods—specifically spherical and vector spherical harmonics—for reconstructing noisy scalar and vector fields defined on the surface of a sphere. Motivated by the physical geometry of the Earth and the need for interpretable and data-efficient reconstructions of climate variables such as temperature and wind, the investigation proposes a physics-informed approach that bridges ideas from classical approximation theory and machine learning.
 
