@@ -103,8 +103,9 @@ layout: nil
     }
 
     .toggle-button {
-      left: 1rem;
-    }
+  display: block; /* always visible */
+}
+
 
     .mode-toggle {
       right: 1rem;
@@ -123,14 +124,10 @@ layout: nil
   }
 
   nav.toc {
-    display: none;
-    width: 100%;
-    height: auto;
-    position: relative;
-    padding: 1rem;
-    background-color: var(--toc-bg);
+    display: none;  
   }
 
+ 
   nav.toc.active {
     display: block;
   }
