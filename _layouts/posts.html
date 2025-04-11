@@ -89,7 +89,7 @@ layout: nil
     }
 
     .toggle-button, .mode-toggle {
-      position: absolute;
+      position: fixed;
       top: 1rem;
       background: var(--code-bg);
       color: var(--text-color);
@@ -103,9 +103,9 @@ layout: nil
     }
 
     .toggle-button {
-  display: block; /* always visible */
-}
-
+      left: 1rem;
+      display: none; /* hidden by default on desktop */
+    }
 
     .mode-toggle {
       right: 1rem;
@@ -118,29 +118,37 @@ layout: nil
       margin: auto;
     }
 
-@media (max-width: 768px) {
-  body {
-    flex-direction: column;
-  }
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
 
-  nav.toc {
-    display: none;  
-  }
+      nav.toc {
+        position: fixed;
+        left: -250px;
+        transition: left 0.3s ease;
+        z-index: 999;
+      }
 
- 
-  nav.toc.active {
-    display: block;
-  }
+      nav.toc.active {
+        left: 0;
+      }
 
-  .toggle-button {
-    display: block;
-  }
+      .toggle-button {
+        display: block;
+      }
 
-  main {
-    padding: 1rem;
-  }
-}
+      main {
+        padding: 1rem;
+        padding-top: 4rem; /* Add space for the toggle button */
+      }
+    }
 
+    @media (min-width: 769px) {
+      .toggle-button {
+        display: none; /* Hide on desktop */
+      }
+    }
   </style>
   <!-- MathJax -->
   <script type="text/javascript" async
@@ -149,53 +157,53 @@ layout: nil
 </head>
 <body>
 
+  <button class="toggle-button" id="sidebarToggle">
+    ☰ Menu
+  </button>
+
   <button class="mode-toggle" onclick="document.body.classList.toggle('light-mode')">
     🌓 
   </button>
 
-<nav class="toc">
-  <div style="margin-bottom: 2rem; text-align: center;">
-    <div style="font-size: 2rem;">👤</div>
-    <div style="font-weight: bold; margin: 0.5rem 0;">William Thomas</div>
-    <div style="margin-bottom: 0.5rem;">
-      <span style="font-size: 1rem;">🏫 University of Nottingham</span>
+  <nav class="toc" id="sidebar">
+    <div style="margin-bottom: 2rem; text-align: center;">
+      <div style="font-size: 2rem;">👤</div>
+      <div style="font-weight: bold; margin: 0.5rem 0;">William Thomas</div>
+      <div style="margin-bottom: 0.5rem;">
+        <span style="font-size: 1rem;">🏫 University of Nottingham</span>
+      </div>
+      <div>
+        <a href="https://github.com/Wthomas443" target="_blank" style="display: inline-block; margin: 0.25rem;">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub" width="20" style="vertical-align: middle; filter: invert(1);">
+          <span style="margin-left: 0.3rem;">GitHub</span>
+        </a>
+        <br>
+        <a href="https://www.linkedin.com/in/william-thomas443/" target="_blank" style="display: inline-block; margin: 0.25rem;">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn" width="20" style="vertical-align: middle; filter: invert(1);">
+          <span style="margin-left: 0.3rem;">LinkedIn</span>
+        </a>
+      </div>
     </div>
-    <div>
-      <a href="https://github.com/Wthomas443" target="_blank" style="display: inline-block; margin: 0.25rem;">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub" width="20" style="vertical-align: middle; filter: invert(1);">
-        <span style="margin-left: 0.3rem;">GitHub</span>
-      </a>
-      <br>
-      <a href="https://www.linkedin.com/in/william-thomas443/" target="_blank" style="display: inline-block; margin: 0.25rem;">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn" width="20" style="vertical-align: middle; filter: invert(1);">
-        <span style="margin-left: 0.3rem;">LinkedIn</span>
-      </a>
-    </div>
-  </div>
 
-  <h2>Contents</h2>
-  <ul>
-    <li><a href="#1-summary">1. Summary</a></li>
-    <li><a href="#2-spherical-harmonics">2. Spherical Harmonics</a></li>
-    <li><a href="#3-scalar-field-reconstruction">3. Scalar Field Reconstruction</a></li>
-    <li><a href="#4-synthetic-field-experiments">4. Synthetic Field Experiments</a></li>
-    <li><a href="#5-application-to-temperature-data">5. Application to Temperature Data</a></li>
-    <li><a href="#6-vector-field-reconstruction">6. Vector Field Reconstruction</a></li>
-    <li><a href="#7-real-wind-data-results">7. Real Wind Data Results</a></li>
-    <li><a href="#8-conclusion">8. Conclusion</a></li>
-  </ul>
-</nav>
-
-
-
+    <h2>Contents</h2>
+    <ul>
+      <li><a href="#1-summary">1. Summary</a></li>
+      <li><a href="#2-spherical-harmonics">2. Spherical Harmonics</a></li>
+      <li><a href="#3-scalar-field-reconstruction">3. Scalar Field Reconstruction</a></li>
+      <li><a href="#4-synthetic-field-experiments">4. Synthetic Field Experiments</a></li>
+      <li><a href="#5-application-to-temperature-data">5. Application to Temperature Data</a></li>
+      <li><a href="#6-vector-field-reconstruction">6. Vector Field Reconstruction</a></li>
+      <li><a href="#7-real-wind-data-results">7. Real Wind Data Results</a></li>
+      <li><a href="#8-conclusion">8. Conclusion</a></li>
+    </ul>
+  </nav>
 
   <main>
     <div style="display: flex; justify-content: space-between; align-items: center;">
       <a href="https://wthomas443.github.io/Physics-Informed-Machine-Learning/" 
-   style="text-decoration: none; padding: 0.5rem 1rem; background: var(--code-bg); color: var(--text-color); border-radius: 4px;">
-  ⬅ Home
-</a>
-
+     style="text-decoration: none; padding: 0.5rem 1rem; background: var(--code-bg); color: var(--text-color); border-radius: 4px;">
+      ⬅ Home
+      </a>
     </div>
     <header>
       <h1>{{ page.title }}</h1>
@@ -209,15 +217,27 @@ layout: nil
       <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name | default: 'William Thomas' }}</p>
     </footer>
   </main>
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const toggleBtn = document.querySelector('.toggle-button');
-    const toc = document.querySelector('nav.toc');
-    toggleBtn.addEventListener('click', () => {
-      toc.classList.toggle('active');
-    });
-  });
-</script>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggleBtn = document.getElementById('sidebarToggle');
+      const sidebar = document.getElementById('sidebar');
+      
+      // Toggle sidebar on button click
+      toggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+      });
+      
+      // Close sidebar when clicking on a link (for mobile)
+      const navLinks = document.querySelectorAll('nav.toc a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 768) {
+            sidebar.classList.remove('active');
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
