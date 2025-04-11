@@ -30,19 +30,17 @@ $$
 Y^{\ell}_{m}:S^2\rightarrow \mathbb{C}, \hspace{1cm} Y^{\ell}_{m}(\vartheta,\varphi) = \sqrt{\frac{2\ell+1}{4\pi}\frac{(\ell-m)!}{(\ell+m)!}}P_{\ell m}(\cos\vartheta)e^{im\varphi}.
 $$
 
-They exhibit spectral properties and form an orthonormal basis on a sphere. Any function on the sphere $$S^2 = \\{(\vartheta,\varphi) \mid \vartheta \in [0, \pi],  \varphi \in [0, 2\pi)\\}$$ can be written as an expansion of spherical harmonics:
+They exhibit spectral properties and form an orthonormal basis on a sphere. Any function on the sphere $$S^2 = \{(\vartheta,\varphi) \mid \vartheta \in [0, \pi],  \varphi \in [0, 2\pi)\}$$ can be written as an expansion of spherical harmonics:
 
 $$
 f(\vartheta, \varphi) = \sum^\infty_{\ell=0}\sum^\ell_{m=-\ell}v_{\ell m}Y^{\ell}_{m}(\vartheta,\varphi).
 $$
-
 
 They are eigenfunctions of the Laplacian operator on $$S^2$$. They arise as solutions to the angular part of Laplace's equation in spherical coordinates:
 
 $$
 \nabla^2_{\Omega} Y^{\ell}_{m} = -\ell(\ell+1) Y^{\ell}_{m}.
 $$
-
 
 Each function is indexed by degree $$\ell \geq 0$$ and order $$-\ell \leq m \leq \ell$$, and the set $$\{Y^{\ell}_{m}\}$$ forms the orthonormal basis.
 
@@ -66,7 +64,7 @@ These properties allow for penalisation using different Sobolev seminorms of the
 
 ## 3. Scalar Field Reconstruction
 
-Given noisy observations $$\{(\vartheta_i, \varphi_i, f_i)\}_{i=1}^n$$,  the scalar field is approximated as a truncated series expansion:
+Given noisy observations $$\{(\vartheta_i, \varphi_i, f_i)\}_{i=1}^n$$, the scalar field is approximated as a truncated series expansion:
 
 $$
 Sf(\vartheta, \varphi) = \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} v_{\ell m} Y^{\ell}_{m}(\vartheta, \varphi).
@@ -75,25 +73,23 @@ $$
 The minimisation problem to be solved is:
 
 $$
-\min_{v_{\ell m}} \sum_{i=1}^n |Sf(\vartheta_i, \varphi_i) - f_i|^2 + \lambda |Sf|_{H^k(S^2)}
+\min_{v_{\ell m}} \sum_{i=1}^n |Sf(\vartheta_i, \varphi_i) - f_i|^2 + \lambda |Sf|_{H^k(S^2)}.
 $$
 
-The first term is the squared error which is to be minimised, the second is the regularisation term with regularisation parameter $$\lambda$$. It penalises with the semi norm of the kth Hilbert space, that is $$||\nabla^kSf||_{L^2(S^2)}$$. So if it is required that the kth derivative of your solution exists or that $$f\in H^k(S^2)$$ this is a regularisation term that could be used to ensure this is the case. By use of the orthogonality of the spherical harmonics it is true that 
+The first term is the squared error which is to be minimised, the second is the regularisation term with regularisation parameter $$\lambda$$. It penalises with the seminorm of the kth Hilbert space, that is $$||\nabla^k Sf||_{L^2(S^2)}$$. So if it is required that the kth derivative of your solution exists or that $$f \in H^k(S^2)$$, this is a regularisation term that could be used to ensure this is the case. By use of the orthogonality of the spherical harmonics, it is true that:
 
 $$
-|Sf|_{H^k(S^2)} = \sum^L_{\ell=0}\sum^\ell_{m=-l}(\ell(\ell+1))^k|v_{\ell m}|^2
+|Sf|_{H^k(S^2)} = \sum^L_{\ell=0}\sum^\ell_{m=-\ell}(\ell(\ell+1))^k|v_{\ell m}|^2.
 $$
-
-
 
 ---
 
 ## 4. Numerical Implementation
 
-Using matrix notation, let $A$ be the design matrix, and $f$ the vector of observations. Then the regularized solution is given by:
+Using matrix notation, let $$A$$ be the design matrix, and $$f$$ the vector of observations. Then the regularized solution is given by:
 
 $$
-v = (A^H A + \lambda M_k)^{-1} A^H f
+v = (A^H A + \lambda M_k)^{-1} A^H f,
 $$
 
 where $$M_k$$ is a diagonal matrix with $$(\ell(\ell+1))^k$$ on the diagonal. The approach supports efficient solvers and cross-validation strategies for tuning $$\lambda$$.
@@ -107,7 +103,7 @@ where $$M_k$$ is a diagonal matrix with $$(\ell(\ell+1))^k$$ on the diagonal. Th
 For synthetic data constructed from known harmonics, reconstruction error decreases with increased sample size $$n$$. Empirically, the optimal truncation degree $$L$$ scales with:
 
 $$
-L \approx \frac{6}{7} \sqrt{n}
+L \approx \frac{6}{7} \sqrt{n}.
 $$
 
 ### 5.2 Regularization Effects
@@ -118,11 +114,11 @@ Without regularization, overfitting is observed as $$L$$ increases. Introducing 
 
 ## 6. Application to Temperature Data
 
-### 6.1 Low-Resolution Dataset ($n = 100$)
+### 6.1 Low-Resolution Dataset ($$n = 100$$)
 
 Using $$L = 9$$ and $$H^2$$ regularization, the model captures broad-scale temperature gradients, but struggles in unsampled regions (e.g., oceans, poles).
 
-### 6.2 High-Resolution Dataset ($n = 3510$)
+### 6.2 High-Resolution Dataset ($$n = 3510$$)
 
 Using $$L = 12$$ with the same framework yields improved detail and spatial resolution. Errors are reduced especially over land, demonstrating scalability.
 
@@ -133,7 +129,7 @@ Using $$L = 12$$ with the same framework yields improved detail and spatial reso
 To approximate divergence-free vector fields, we use vector spherical harmonics:
 
 $$
-\Phi^{\ell}_{m}(\vartheta, \varphi) = \mathbf{r} \times \nabla Y^{\ell}_{m}(\vartheta, \varphi)
+\Phi^{\ell}_{m}(\vartheta, \varphi) = \mathbf{r} \times \nabla Y^{\ell}_{m}(\vartheta, \varphi).
 $$
 
 This guarantees $$\nabla \cdot \mathbf{u} = 0$$ by construction.
@@ -141,7 +137,7 @@ This guarantees $$\nabla \cdot \mathbf{u} = 0$$ by construction.
 We expand:
 
 $$
-\mathbf{u}(\vartheta, \varphi) = \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} v_{\ell m} \Phi^{\ell}_{m}(\vartheta, \varphi)
+\mathbf{u}(\vartheta, \varphi) = \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} v_{\ell m} \Phi^{\ell}_{m}(\vartheta, \varphi),
 $$
 
 and fit coefficients using a similar regularized least squares procedure.
