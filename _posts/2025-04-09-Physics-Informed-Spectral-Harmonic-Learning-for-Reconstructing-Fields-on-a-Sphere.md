@@ -27,35 +27,37 @@ This study formulates the reconstruction problem as a regularized least squares 
 Spherical harmonics are defined as:
 
 $$
-Y^l_{m}:S^2\rightarrow \mathbb{C}, \hspace{1cm} Y^l_{m}(\vartheta,\varphi) = \sqrt{\frac{2l+1}{4\pi}\frac{(l-m)!}{(l+m)!}}P_{lm}(\cos\vartheta)e^{im\varphi}.
+Y^{\ell}_{m}:S^2\rightarrow \mathbb{C}, \hspace{1cm} Y^{\ell}_{m}(\vartheta,\varphi) = \sqrt{\frac{2\ell+1}{4\pi}\frac{(\ell-m)!}{(\ell+m)!}}P_{\ell m}(\cos\vartheta)e^{im\varphi}.
 $$
 
-They exhibit spectral properties and form an orthonormal basis on a sphere. Any function on the sphere $$S^2 = \\{(\vartheta,\varphi) \mid \vartheta \in [0, \pi],  \varphi \in [0, 2\pi)\\}$$ can be written as an expansion of spherical harmonics:
+They exhibit spectral properties and form an orthonormal basis on a sphere. Any function on the sphere $$S^2 = \{(\vartheta,\varphi) \mid \vartheta \in [0, \pi],  \varphi \in [0, 2\pi)\}$$ can be written as an expansion of spherical harmonics:
 
 $$
-f(\vartheta, \varphi) = \sum^\infty_{l=0}\sum^l_{m=-l}v_{lm}Y^l_{m}(\vartheta,\varphi).
+f(\vartheta, \varphi) = \sum^\infty_{\ell=0}\sum^\ell_{m=-\ell}v_{\ell m}Y^{\ell}_{m}(\vartheta,\varphi).
 $$
+
 
 They are eigenfunctions of the Laplacian operator on $$S^2$$. They arise as solutions to the angular part of Laplace's equation in spherical coordinates:
 
 $$
-\nabla^2_{\Omega} Y_\ell^m = -\ell(\ell+1) Y_\ell^m.
+\nabla^2_{\Omega} Y^{\ell}_{m} = -\ell(\ell+1) Y^{\ell}_{m}.
 $$
 
-Each function is indexed by degree $$\ell \geq 0$$ and order $$-\ell \leq m \leq \ell$$, and the set $$\{Y_\ell^m\}$$ forms the orthonormal basis.
+
+Each function is indexed by degree $$\ell \geq 0$$ and order $$-\ell \leq m \leq \ell$$, and the set $$\{Y^{\ell}_{m}\}$$ forms the orthonormal basis.
 
 ### 2.2 Orthogonality and Inner Products
 
 The harmonics satisfy:
 
 $$
-\langle Y_\ell^m, Y_{\ell'}^{m'} \rangle = \delta_{\ell \ell'} \delta_{m m'}
+\langle Y^{\ell}_{m}, Y^{\ell'}_{m'} \rangle = \delta_{\ell \ell'} \delta_{m m'}
 $$
 
 and their gradients:
 
 $$
-\langle \nabla Y_\ell^m, \nabla Y_{\ell'}^{m'} \rangle = \ell(\ell+1) \delta_{\ell \ell'} \delta_{m m'}
+\langle \nabla Y^{\ell}_{m}, \nabla Y^{\ell'}_{m'} \rangle = \ell(\ell+1) \delta_{\ell \ell'} \delta_{m m'}
 $$
 
 These properties allow for penalisation using different Sobolev seminorms of the solution.
@@ -67,13 +69,13 @@ These properties allow for penalisation using different Sobolev seminorms of the
 Given noisy observations $$\{(\vartheta_i, \varphi_i, f_i)\}_{i=1}^n$$, we approximate the scalar field as a truncated series expansion:
 
 $$
-Sf(\theta, \phi) = \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} v_{\ell m} Y_\ell^m(\theta, \phi)
+Sf(\vartheta, \varphi) = \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} v_{\ell m} Y^{\ell}_{m}(\vartheta, \varphi)
 $$
 
 We solve the optimization problem:
 
 $$
-\min_{v_{\ell m}} \sum_{i=1}^n |Sf(\theta_i, \phi_i) - f_i|^2 + \lambda \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} (\ell(\ell+1))^k |v_{\ell m}|^2
+\min_{v_{\ell m}} \sum_{i=1}^n |Sf(\vartheta_i, \varphi_i) - f_i|^2 + \lambda \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} (\ell(\ell+1))^k |v_{\ell m}|^2
 $$
 
 This balances fitting accuracy with smoothness or energy constraints, depending on $k$.
@@ -125,7 +127,7 @@ Using $$L = 12$$ with the same framework yields improved detail and spatial reso
 To approximate divergence-free vector fields, we use vector spherical harmonics:
 
 $$
-\Phi_\ell^m(\theta, \phi) = \mathbf{r} \times \nabla Y_\ell^m(\theta, \phi)
+\Phi^{\ell}_{m}(\vartheta, \varphi) = \mathbf{r} \times \nabla Y^{\ell}_{m}(\vartheta, \varphi)
 $$
 
 This guarantees $$\nabla \cdot \mathbf{u} = 0$$ by construction.
@@ -133,7 +135,7 @@ This guarantees $$\nabla \cdot \mathbf{u} = 0$$ by construction.
 We expand:
 
 $$
-\mathbf{u}(\theta, \phi) = \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} v_{\ell m} \Phi_\ell^m(\theta, \phi)
+\mathbf{u}(\vartheta, \varphi) = \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} v_{\ell m} \Phi^{\ell}_{m}(\vartheta, \varphi)
 $$
 
 and fit coefficients using a similar regularized least squares procedure.
@@ -163,5 +165,3 @@ This work proposes a spectral learning framework based on spherical harmonics an
 - Investigate adaptive spectral refinement
 
 ---
-
-
