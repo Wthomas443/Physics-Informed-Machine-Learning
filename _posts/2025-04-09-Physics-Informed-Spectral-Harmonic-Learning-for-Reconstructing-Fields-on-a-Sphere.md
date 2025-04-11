@@ -30,7 +30,7 @@ $$
 Y^{\ell}_{m}:S^2\rightarrow \mathbb{C}, \hspace{1cm} Y^{\ell}_{m}(\vartheta,\varphi) = \sqrt{\frac{2\ell+1}{4\pi}\frac{(\ell-m)!}{(\ell+m)!}}P_{\ell m}(\cos\vartheta)e^{im\varphi}.
 $$
 
-They exhibit spectral properties and form an orthonormal basis on a sphere. Any function on the sphere $$S^2 = \{(\vartheta,\varphi) \mid \vartheta \in [0, \pi],  \varphi \in [0, 2\pi)\}$$ can be written as an expansion of spherical harmonics:
+They exhibit spectral properties and form an orthonormal basis on a sphere. Any function on the sphere $$S^2 = \\{(\vartheta,\varphi) \mid \vartheta \in [0, \pi],  \varphi \in [0, 2\pi)\\}$$ can be written as an expansion of spherical harmonics:
 
 $$
 f(\vartheta, \varphi) = \sum^\infty_{\ell=0}\sum^\ell_{m=-\ell}v_{\ell m}Y^{\ell}_{m}(\vartheta,\varphi).
@@ -66,19 +66,25 @@ These properties allow for penalisation using different Sobolev seminorms of the
 
 ## 3. Scalar Field Reconstruction
 
-Given noisy observations $$\{(\vartheta_i, \varphi_i, f_i)\}_{i=1}^n$$, we approximate the scalar field as a truncated series expansion:
+Given noisy observations $$\{(\vartheta_i, \varphi_i, f_i)\}_{i=1}^n$$,  the scalar field is approximated as a truncated series expansion:
 
 $$
-Sf(\vartheta, \varphi) = \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} v_{\ell m} Y^{\ell}_{m}(\vartheta, \varphi)
+Sf(\vartheta, \varphi) = \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} v_{\ell m} Y^{\ell}_{m}(\vartheta, \varphi).
 $$
 
-We solve the optimization problem:
+The minimisation problem to be solved is:
 
 $$
-\min_{v_{\ell m}} \sum_{i=1}^n |Sf(\vartheta_i, \varphi_i) - f_i|^2 + \lambda \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} (\ell(\ell+1))^k |v_{\ell m}|^2
+\min_{v_{\ell m}} \sum_{i=1}^n |Sf(\vartheta_i, \varphi_i) - f_i|^2 + \lambda |Sf|_{H^k(S^2)}
 $$
 
-This balances fitting accuracy with smoothness or energy constraints, depending on $k$.
+The first term is the squared error which is to be minimised, the second is the regularisation term with regularisation parameter $$\lambda$$. It penalises with the semi norm of the kth Hilbert space, that is $$||\nabla^kSf||_{L^2(S^2)}$$. So if it is required that the kth derivative of your solution exists or that $$f\in H^k(S^2)$$ this is a regularisation term that could be used to ensure this is the case. By use of the orthogonality of the spherical harmonics it is true that 
+
+$$
+|Sf|_{H^k(S^2)} = \sum^L_{\ell=0}\sum^\ell_{m=-l}(\ell(\ell+1))^k|v_{\ell m}|^2
+$$
+
+
 
 ---
 
