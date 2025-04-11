@@ -154,15 +154,15 @@ The method was applied to wind field observations at $$n = 100$$ and $$n = 500$$
 
 Incompressibility Assumption:
 
--The 2D wind data from Meteostat may violate incompressibility because real wind has a vertical component (e.g., due to sloped terrain), which is ignored and data is given in 2D on the manifold.
+- The 2D wind data from Meteostat may violate incompressibility because real wind has a vertical component (e.g., due to sloped terrain), which is ignored and data is given in 2D on the manifold.
 
--Terrain roughness and vegetation effects are unaccounted for, further deviating from incompressibility.
+- Terrain roughness and vegetation effects are unaccounted for, further deviating from incompressibility.
 
 Data Quality Issues:
 
--Urban wind measurements are distorted by buildings and skyscrapers, introducing noise. Future work should exclude such data.
+- Urban wind measurements are distorted by buildings and skyscrapers, introducing noise. Future work should exclude such data.
 
--Hourly averaged wind speed/direction data (like Meteostat’s) lose physical granularity, potentially skewing results.
+- Hourly averaged wind speed/direction data (like Meteostat’s) lose physical granularity, potentially skewing results.
 
 
 ---
@@ -182,5 +182,7 @@ This work proposes a spectral learning framework based on spherical harmonics an
 - Explore non-spherical geometries
 - Use Bayesian formulations for uncertainty quantification
 - Investigate adaptive spectral refinement
+
+### References
 
 ---
