@@ -76,7 +76,7 @@ $$
 \min_{v_{\ell m}} \sum_{i=1}^n |Sf(\vartheta_i, \varphi_i) - f_i|^2 + \lambda |Sf|_{H^k(S^2)}.
 $$
 
-The first term is the squared error which is to be minimised, the second is the regularisation term with regularisation parameter $$\lambda$$. It penalises with the seminorm of the kth Hilbert space, that is $$||\nabla^k Sf||_{L^2(S^2)}$$. So if it is required that the kth derivative of your solution exists or that $$f \in H^k(S^2)$$, this is a regularisation term that could be used to ensure this is the case. By use of the orthogonality of the spherical harmonics, it is true that:
+The first term is the squared error which is to be minimised, the second is the regularisation term with regularisation parameter $$\lambda$$. It penalises with the seminorm of the kth Hilbert space, that is $||\nabla^k Sf||_{L^2(S^2)}$. So if it is required that the kth derivative of your solution exists or that $f \in H^k(S^2)$, this is a regularisation term that could be used to ensure this is the case. By use of the orthogonality of the spherical harmonics, it is true that:
 
 $$
 |Sf|_{H^k(S^2)} = \sum^L_{\ell=0}\sum^\ell_{m=-\ell}(\ell(\ell+1))^k|v_{\ell m}|^2.
