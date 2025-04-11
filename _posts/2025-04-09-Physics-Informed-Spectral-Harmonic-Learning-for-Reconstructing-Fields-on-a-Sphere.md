@@ -82,9 +82,13 @@ $$
 |Sf|_{H^k(S^2)} = \sum^L_{\ell=0}\sum^\ell_{m=-\ell}(\ell(\ell+1))^k|v_{\ell m}|^2.
 $$
 
----
+The minimisation problem is now 
 
-## 4. Numerical Implementation
+$$
+\min_{v_{\ell m}} \sum_{i=1}^n |Sf(\vartheta_i, \varphi_i) - f_i|^2 + \lambda \sum^L_{\ell=0}\sum^\ell_{m=-\ell}(\ell(\ell+1))^k|v_{\ell m}|^2.
+$$
+
+### 3.1 Numerical Implementation
 
 Using matrix notation, let $$A$$ be the design matrix, and $$f$$ the vector of observations. Then the regularized solution is given by:
 
@@ -92,23 +96,23 @@ $$
 v = (A^H A + \lambda M_k)^{-1} A^H f,
 $$
 
-where $$M_k$$ is a diagonal matrix with $$(\ell(\ell+1))^k$$ on the diagonal. The approach supports efficient solvers and cross-validation strategies for tuning $$\lambda$$.
+where $$M_k$$ is a diagonal matrix with $$(\ell(\ell+1))^k$$ on the diagonal.
 
 ---
 
-## 5. Synthetic Field Experiments
+## 4. Model Analysis with Sythetic Data
 
-### 5.1 Varying $$L$$ and $$n$$
+### 4.1 Varying $$L$$ and $$n$$
 
-For synthetic data constructed from known harmonics, reconstruction error decreases with increased sample size $$n$$. Empirically, the optimal truncation degree $$L$$ scales with:
+For synthetic data constructed from a known series of harmonics, reconstruction error decreases with increased sample size $$n$$. The optimal value of $$L$$, the maximum degree of spherical harmonic used has the following apprximate relationship:
 
 $$
 L \approx \frac{6}{7} \sqrt{n}.
 $$
 
-### 5.2 Regularization Effects
+### 4.2 Regularization Effects
 
-Without regularization, overfitting is observed as $$L$$ increases. Introducing Sobolev regularization (e.g., $$H^2$$) results in smoother reconstructions with better generalization.
+Without regularization, overfitting is observed as $$L$$ increases. Introducing regularisation with Sobolev seminorms (e.g., $$H^2$$) results in smoother reconstructions without the effects of overfitting.
 
 ---
 
@@ -116,11 +120,11 @@ Without regularization, overfitting is observed as $$L$$ increases. Introducing 
 
 ### 6.1 Low-Resolution Dataset ($$n = 100$$)
 
-Using $$L = 9$$ and $$H^2$$ regularization, the model captures broad-scale temperature gradients, but struggles in unsampled regions (e.g., oceans, poles).
+Using $$L = 9$$ and $$H^2$$ regularisation, the model captures broad scale temperature patterns, but struggles in unsampled regions (e.g., oceans, poles).
 
 ### 6.2 High-Resolution Dataset ($$n = 3510$$)
 
-Using $$L = 12$$ with the same framework yields improved detail and spatial resolution. Errors are reduced especially over land, demonstrating scalability.
+Using $$L = 51$$ with the same framework yields improved detail and spatial resolution. Errors are reduced especially over land, demonstrating scalability.
 
 ---
 
@@ -134,19 +138,32 @@ $$
 
 This guarantees $$\nabla \cdot \mathbf{u} = 0$$ by construction.
 
-We expand:
+Approximations are made using a similar series expansion:
 
 $$
-\mathbf{u}(\vartheta, \varphi) = \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} v_{\ell m} \Phi^{\ell}_{m}(\vartheta, \varphi),
+\mathbf{u}(\vartheta, \varphi) = \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} v_{\ell m} \Phi^{\ell}_{m}(\vartheta, \varphi).
 $$
 
-and fit coefficients using a similar regularized least squares procedure.
+The coefficients are fit using a similar regularised least squares procedure.
 
 ---
 
 ## 8. Real Wind Data Results
 
-The method was applied to wind field observations at $$n = 100$$ and $$n = 500$$ sites. Reconstructions were accurate at low latitudes, with expected difficulties near the poles due to coordinate singularities and sparse data.
+The method was applied to wind field observations at $$n = 100$$ and $$n = 500$$ sites. Reconstructions were inaccurate, especially with expected difficulties near the poles due to singularities and sparse data. The results indicate that test error rises with increasing truncation degree $L$, suggesting potential model inaccuracies beyond just underfitting. Key reasons for these inaccuracies include:
+
+Incompressibility Assumption:
+
+-The 2D wind data from Meteostat may violate incompressibility because real wind has a vertical component (e.g., due to sloped terrain), which is ignored and data is given in 2D on the manifold.
+
+-Terrain roughness and vegetation effects are unaccounted for, further deviating from incompressibility.
+
+Data Quality Issues:
+
+-Urban wind measurements are distorted by buildings and skyscrapers, introducing noise. Future work should exclude such data.
+
+-Hourly averaged wind speed/direction data (like Meteostat’s) lose physical granularity, potentially skewing results.
+
 
 ---
 
