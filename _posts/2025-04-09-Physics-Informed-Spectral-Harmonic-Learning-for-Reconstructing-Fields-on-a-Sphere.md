@@ -13,10 +13,6 @@ A least squares framework is used to fit spherical harmonic expansions to data, 
 
 The study finds that spherical harmonics provide a highly efficient basis for spatially coherent reconstruction on the sphere, and that careful regularization is crucial in balancing accuracy and overfitting. These insights form a foundation for future extensions into spatiotemporal modeling and adaptive spectral learning strategies.
 
----
-
-## 1. Introduction
-
 Recent advancements in computational power and data availability have accelerated the use of data-driven models for physical systems. However, many machine learning techniques lack a principled connection to the governing equations and structures of the domains they operate in. This dissertation seeks to close this gap by leveraging **spectral harmonic learning** on the sphere to perform high-fidelity reconstruction of scalar and vector fields from sparse and noisy observational data.
 
 The motivation arises particularly from geophysical modeling: the Earth can be approximately treated as a sphere, and many climate and environmental fields naturally reside on this manifold. Traditional interpolation methods often struggle with irregular sampling and do not encode global physical constraints. By contrast, spherical harmonics are orthogonal basis functions that provide a global, multiscale representation well-suited to the geometry of the problem.
@@ -25,17 +21,28 @@ This study formulates the reconstruction problem as a regularized least squares 
 
 ---
 
-## 2. Spectral Harmonics on the Sphere
+## 2. Spherical Harmonics
 
 ### 2.1 Spherical Harmonic Basis Functions
-
-Spherical harmonics $$Y_\ell^m(\theta, \phi)$$ are eigenfunctions of the Laplacian operator on the sphere $$S^2$$. They arise as solutions to the angular part of Laplace's equation in spherical coordinates:
+Spherical harmonics are defined as:
 
 $$
-\nabla^2_{\Omega} Y_\ell^m = -\ell(\ell+1) Y_\ell^m
+Y^l_{m}:S^2\rightarrow \mathbb{C}, \hspace{1cm} Y^l_{m}(\vartheta,\varphi) = \sqrt{\frac{2l+1}{4\pi}\frac{(l-m)!}{(l+m)!}}P_{lm}(\cos\vartheta)e^{im\varphi}.
 $$
 
-Each function is indexed by degree $$\ell \geq 0$$ and order $$-\ell \leq m \leq \ell$$, and the set $$\{Y_\ell^m\}$$ forms an orthonormal basis for $$L^2(S^2)$$.
+They exhibit spectral properties and form an orthonormal basis on a sphere. Any function on the sphere $$S^2 = \\{(\vartheta,\varphi) \mid \vartheta \in [0, \pi],  \varphi \in [0, 2\pi)\\}$$ can be written as an expansion of spherical harmonics:
+
+$$
+f(\vartheta, \varphi) = \sum^\infty_{l=0}\sum^l_{m=-l}v_{lm}Y^l_{m}(\vartheta,\varphi).
+$$
+
+They are eigenfunctions of the Laplacian operator on $$S^2$$. They arise as solutions to the angular part of Laplace's equation in spherical coordinates:
+
+$$
+\nabla^2_{\Omega} Y_\ell^m = -\ell(\ell+1) Y_\ell^m.
+$$
+
+Each function is indexed by degree $$\ell \geq 0$$ and order $$-\ell \leq m \leq \ell$$, and the set $$\{Y_\ell^m\}$$ forms the orthonormal basis.
 
 ### 2.2 Orthogonality and Inner Products
 
@@ -51,13 +58,13 @@ $$
 \langle \nabla Y_\ell^m, \nabla Y_{\ell'}^{m'} \rangle = \ell(\ell+1) \delta_{\ell \ell'} \delta_{m m'}
 $$
 
-These properties allow for efficient projection and Sobolev-type penalization.
+These properties allow for penalisation using different Sobolev seminorms of the solution.
 
 ---
 
 ## 3. Scalar Field Reconstruction
 
-Given noisy observations $$\{(\theta_i, \phi_i, f_i)\}_{i=1}^n$$, we approximate the scalar field as:
+Given noisy observations $$\{(\vartheta_i, \varphi_i, f_i)\}_{i=1}^n$$, we approximate the scalar field as a truncated series expansion:
 
 $$
 Sf(\theta, \phi) = \sum_{\ell=0}^L \sum_{m=-\ell}^{\ell} v_{\ell m} Y_\ell^m(\theta, \phi)
