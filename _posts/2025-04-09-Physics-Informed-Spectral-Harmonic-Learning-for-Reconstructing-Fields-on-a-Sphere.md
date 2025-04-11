@@ -5,13 +5,14 @@ date: "2025-04-09"
 ---
 William Thomas – University of Nottingham
 
-## Summary
+## 1. Summary
 
 This post summarises the work I completed, in my fourth year at the University of Nottingham, for my Dissertation module. It explores the application of physics informed machine learning methods, specifically spherical and vector spherical harmonics in a truncated series expansion for reconstructing noisy scalar and vector fields which are defined on the surface of a sphere. Motivated by the physical geometry of the Earth and the need for interpretable and efficient reconstructions of climate variables such as temperature and wind, the investigation creates a simple model to make spatial reconstructions of such data on a sphere.
 
 A least squares framework is used to fit unknown coefficients to data, with additional regularisation terms  explored. These regularisation methods are designed to penalize non smooth or physically implausible solutions, aligning the reconstructions with the governing physical principles of the underlying fields (e.g., diffusion, incompressibility). The method is tested on both synthetic data and real world datasets including global climate measurements. For vector fields, a divergence-free basis using vector spherical harmonics is constructed to model wind fields.
 
 The study finds that spherical harmonics provide a highly efficient basis for spatial reconstruction on the sphere, and that careful regularisation is crucial in balancing accuracy and overfitting. These insights form a foundation for future extensions into spatiotemporal modelling.
+
 ---
 
 ## 2. Spherical Harmonics
@@ -109,19 +110,19 @@ Without regularization, overfitting is observed as $$L$$ increases. Introducing 
 
 ---
 
-## 6. Application to Temperature Data
+## 5. Application to Temperature Data
 
-### 6.1 Low-Resolution Dataset ($$n = 100$$)
+### 5.1 Low-Resolution Dataset ($$n = 100$$)
 
 Using $$L = 9$$ and $$H^2$$ regularisation, the model captures broad scale temperature patterns, but struggles in unsampled regions (e.g., oceans, poles).
 
-### 6.2 High-Resolution Dataset ($$n = 3510$$)
+### 5.2 High-Resolution Dataset ($$n = 3510$$)
 
 Using $$L = 51$$ with the same framework yields improved detail and spatial resolution. Errors are reduced especially over land, demonstrating scalability.
 
 ---
 
-## 7. Vector Field Reconstruction
+## 6. Vector Field Reconstruction
 
 To approximate divergence-free vector fields, we use vector spherical harmonics:
 
@@ -141,7 +142,7 @@ The coefficients are fit using a similar regularised least squares procedure.
 
 ---
 
-## 8. Real Wind Data Results
+## 7. Real Wind Data Results
 
 The method was applied to wind field observations at $$n = 100$$ and $$n = 500$$ sites. Reconstructions were inaccurate, especially with expected difficulties near the poles due to singularities and sparse data. The results indicate that test error rises with increasing truncation degree $$L$$, suggesting potential model inaccuracies beyond just underfitting. Key reasons for these inaccuracies include:
 
@@ -160,7 +161,7 @@ Data Quality Issues:
 
 ---
 
-## 9. Conclusion
+## 8. Conclusion
 
 This work proposes a spectral learning framework based on spherical harmonics and vector harmonics for reconstructing fields on the sphere. Key contributions include:
 
