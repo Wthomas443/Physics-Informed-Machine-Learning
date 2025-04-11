@@ -7,18 +7,11 @@ William Thomas – University of Nottingham
 
 ## Summary
 
-This dissertation explores the application of spectral harmonic methods—specifically spherical and vector spherical harmonics—for reconstructing noisy scalar and vector fields defined on the surface of a sphere. Motivated by the physical geometry of the Earth and the need for interpretable and data-efficient reconstructions of climate variables such as temperature and wind, the investigation proposes a physics-informed approach that bridges ideas from classical approximation theory and machine learning.
+This post summarises the work I completed, in my fourth year at the University of Nottingham, for my Dissertation module. It explores the application of physics informed machine learning methods, specifically spherical and vector spherical harmonics in a truncated series expansion for reconstructing noisy scalar and vector fields which are defined on the surface of a sphere. Motivated by the physical geometry of the Earth and the need for interpretable and efficient reconstructions of climate variables such as temperature and wind, the investigation creates a simple model to make spatial reconstructions of such data on a sphere.
 
-A least squares framework is used to fit spherical harmonic expansions to data, with additional regularization terms derived from Sobolev seminorms. These regularization strategies are designed to penalize non-smooth or physically implausible solutions, aligning the reconstructions with the governing physical principles of the underlying fields (e.g., diffusion, incompressibility). The methodology is validated on both synthetic data and real-world datasets including global climate measurements. For vector fields, a divergence-free basis using vector spherical harmonics is constructed to model wind fields.
+A least squares framework is used to fit unknown coefficients to data, with additional regularisation terms  explored. These regularisation methods are designed to penalize non smooth or physically implausible solutions, aligning the reconstructions with the governing physical principles of the underlying fields (e.g., diffusion, incompressibility). The method is tested on both synthetic data and real world datasets including global climate measurements. For vector fields, a divergence-free basis using vector spherical harmonics is constructed to model wind fields.
 
-The study finds that spherical harmonics provide a highly efficient basis for spatially coherent reconstruction on the sphere, and that careful regularization is crucial in balancing accuracy and overfitting. These insights form a foundation for future extensions into spatiotemporal modeling and adaptive spectral learning strategies.
-
-Recent advancements in computational power and data availability have accelerated the use of data-driven models for physical systems. However, many machine learning techniques lack a principled connection to the governing equations and structures of the domains they operate in. This dissertation seeks to close this gap by leveraging **spectral harmonic learning** on the sphere to perform high-fidelity reconstruction of scalar and vector fields from sparse and noisy observational data.
-
-The motivation arises particularly from geophysical modeling: the Earth can be approximately treated as a sphere, and many climate and environmental fields naturally reside on this manifold. Traditional interpolation methods often struggle with irregular sampling and do not encode global physical constraints. By contrast, spherical harmonics are orthogonal basis functions that provide a global, multiscale representation well-suited to the geometry of the problem.
-
-This study formulates the reconstruction problem as a regularized least squares optimization using spectral basis functions, applying it to problems in temperature field estimation and incompressible wind field recovery.
-
+The study finds that spherical harmonics provide a highly efficient basis for spatial reconstruction on the sphere, and that careful regularisation is crucial in balancing accuracy and overfitting. These insights form a foundation for future extensions into spatiotemporal modelling.
 ---
 
 ## 2. Spherical Harmonics
@@ -76,7 +69,7 @@ $$
 \min_{v_{\ell m}} \sum_{i=1}^n |Sf(\vartheta_i, \varphi_i) - f_i|^2 + \lambda |Sf|_{H^k(S^2)}.
 $$
 
-The first term is the squared error which is to be minimised, the second is the regularisation term with regularisation parameter $$\lambda$$. It penalises with the seminorm of the kth Hilbert space, that is $$\|\| \nabla ^k Sf\|\|_{L^2(S^2)}$$. So if it is required that the kth derivative of your solution exists or that $$f \in H^k(S^2)$$, this is a regularisation term that could be used to ensure this is the case. By use of the orthogonality of the spherical harmonics, it is true that:
+The first term is the squared error which is to be minimised, the second is the regularisation term with regularisation parameter $$\lambda$$. It penalises with the seminorm of the kth Hilbert space, that is $$\| \nabla ^k Sf\|_{L^2(S^2)}$$. So if it is required that the kth derivative of your solution exists or that $$f \in H^k(S^2)$$, this regularisation term can be used to ensure it is the case. By use of the orthogonality of the spherical harmonics, it is true that:
 
 $$
 |Sf|_{H^k(S^2)} = \sum^L_{\ell=0}\sum^\ell_{m=-\ell}(\ell(\ell+1))^k|v_{\ell m}|^2.
