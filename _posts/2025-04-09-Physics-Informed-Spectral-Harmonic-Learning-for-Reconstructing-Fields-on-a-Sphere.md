@@ -94,7 +94,7 @@ where $$M_k$$ is a diagonal matrix with $$(\ell(\ell+1))^k$$ on the diagonal.
 
 ---
 
-## 4. Model Analysis with Sythetic Data
+## 4. Model Analysis with Synthetic Data
 
 ### 4.1 Varying $$L$$ and $$n$$
 
