@@ -104,7 +104,7 @@ $$
 L \approx \frac{6}{7} \sqrt{n}.
 $$
 
-![$$L$$ and $$n$$ relation](/assets/images/section4/loglog-max-degree-vs-no-points.png){: .img-fluid .border .shadow }
+![$$L$$ and $$n$$ relation](/assets/images/section4/loglog max degree vs no points.png){: .img-fluid .border .shadow }
 *Figure 1: Relationship between the optimal maximum degree of spherical harmonic $$L$$ and the number of data points $$n$$ for unregularised models*
 {:.caption}
 
