@@ -119,7 +119,7 @@ Without regularization, overfitting is observed as $$L$$ increases. Introducing 
 *Figure 2: Errors from approximations made with a regularised model and different values of $$L$$*
 {:.caption}
 
-Optimal values for regularisation parameter value $$\lambda$$ can be found using L-curves: a tradeoff graph ballencing the size of  the coefficients' norm and the residual norm. The optimal value of $$\lambda$$ being found at the "corner" of the L.
+Optimal values for regularisation parameter value $$\lambda$$ can be found using L-curves: a trade-off graph ballencing the size of  the coefficients' norm and the residual norm. The optimal value of $$\lambda$$ being found at the "corner" of the L.
 
 ![L-curve]({{"/assets/images/L-curve for sobolev penalisation.png" | relative_url }}){: .img-fluid .border .shadow }
 *Figure 3: L-curve for an approximation of $$L=16$$.*
@@ -131,11 +131,25 @@ Optimal values for regularisation parameter value $$\lambda$$ can be found using
 
 ### 5.1 Low-Resolution Dataset ($$n = 100$$)
 
-Using $$L = 9$$ and $$H^2$$ regularisation, the model captures broad scale temperature patterns, but struggles in unsampled regions (e.g., oceans, poles).
+Using $$L = 9$$ and $$H^2$$ regularisation, the model captures broad scale temperature patterns, but struggles in unsampled regions (e.g., oceans, poles). 
+
+![Major city data]({{"/assets/images/Major cities data.png" | relative_url }}){: .img-fluid .border .shadow }
+*Figure 4: Temperature mesurements in major cities on the globe over the month 07/2003*
+{:.caption}
+
+Errors over different folds of test data is plotted to find an optimal $$\lamda$$ value. This is because plotting the trade-off between the residual norm and the coefficient norm doesn't produce an $$L$$ shape for real data.
+
+![Major city approx]({{"/assets/images/Major cities approx.png" | relative_url }}){: .img-fluid .border .shadow }
+*Figure 5: Resconstruction of the data in Figure 4*
+{:.caption}
 
 ### 5.2 High-Resolution Dataset ($$n = 3510$$)
 
 Using $$L = 51$$ with the same framework yields improved detail and spatial resolution. Errors are reduced especially over land, demonstrating scalability.
+
+![City data]({{"/assets/images/Real data.png" | relative_url }}){: .img-fluid .border .shadow }
+*Figure 4: Temperature mesurements in all cities on the globe over the month 07/2003*
+{:.caption}
 
 ---
 
