@@ -108,15 +108,19 @@ $$
 ![$$L$$ and $$n$$ relation]({{"/assets/images/n-vs-L.png" | relative_url }}){: .img-fluid .border .shadow }
 *Figure 1:The relationship between the optimal maximum degree of spherical harmonic $$L$$ and the number of data points $$n$$ for unregularised models*
 {:.caption}
+
 The blue line in Figure 1 shows the true relaationship, found from the experimental synthetic data.
 
 ### 4.2 Regularization Effects
 
 Without regularization, overfitting is observed as $$L$$ increases. Introducing regularisation with Sobolev seminorms (e.g., $$H^2$$) results in smoother reconstructions without the effects of overfitting.
+
 ![Max degrees]({{"/assets/images/Complexity with sobolev reg.png" | relative_url }}){: .img-fluid .border .shadow }
 *Figure 2: Errors from approximations made with a regularised model and different values of $$L$$*
 {:.caption}
+
 Optimal values for regularisation parameter value $$\lambda$$ can be found using L-curves: a tradeoff graph ballencing the size of  the coefficients' norm and the residual norm. The optimal value being found at the "corner" of the L.
+
 ![L-curve]({{"/assets/images/Complexity with sobolev reg.png" | relative_url }}){: .img-fluid .border .shadow }
 *Figure 3: L-curve for an approximation of $$L=16$$.*
 {:.caption}
