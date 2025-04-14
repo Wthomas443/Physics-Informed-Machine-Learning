@@ -111,9 +111,9 @@ $$
 
 The blue line in Figure 1 shows the true relaationship, found from the experimental synthetic data.
 
-### 4.2 Regularization Effects
+### 4.2 Regularisation Effects
 
-Without regularization, overfitting is observed as $$L$$ increases. Introducing regularisation with Sobolev seminorms (e.g., $$H^2$$) results in smoother reconstructions without the effects of overfitting.
+Without regularisation, overfitting is observed as $$L$$ increases. Introducing regularisation with Sobolev seminorms (e.g., $$H^2$$) results in smoother reconstructions without the effects of overfitting.
 
 ![Max degrees]({{"/assets/images/Complexity with sobolev reg.png" | relative_url }}){: .img-fluid .border .shadow }
 *Figure 2: Errors from approximations made with a regularised model and different values of $$L$$*
@@ -187,7 +187,17 @@ The coefficients are fit using a similar regularised least squares procedure.
 
 ## 7. Real Wind Data Results
 
-The method was applied to wind field observations at $$n = 100$$ and $$n = 500$$ sites. Reconstructions were inaccurate, especially with expected difficulties near the poles due to singularities and sparse data. The results indicate that test error rises with increasing truncation degree $$L$$, suggesting potential model inaccuracies beyond just underfitting. Key reasons for these inaccuracies include:
+The method was applied to wind field observations at $$n = 100$$ and $$n = 500$$ sites. Reconstructions were inaccurate, especially with expected difficulties near the poles due to singularities and sparse data. 
+
+![Wind data]({{"/assets/images/data n=100.png" | relative_url }}){: .img-fluid .border .shadow }
+*Figure 10: $$n=100$$ data points from the wind data set.*
+{:.caption}
+
+![Wind data reconstruction]({{"/assets/images/streamplot n=100, L=50.png" | relative_url }}){: .img-fluid .border .shadow }
+*Figure 11: Resconstruction of the data in Figure 10 in metres per second. Streamlines (Left), vector field magnitude (Right)*
+{:.caption}
+
+The results indicate that test error rises with increasing truncation degree $$L$$, suggesting potential model inaccuracies beyond just underfitting. Key reasons for these inaccuracies include:
 
 Incompressibility Assumption:
 
