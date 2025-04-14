@@ -121,7 +121,7 @@ Without regularization, overfitting is observed as $$L$$ increases. Introducing 
 
 Optimal values for regularisation parameter value $$\lambda$$ can be found using L-curves: a tradeoff graph ballencing the size of  the coefficients' norm and the residual norm. The optimal value being found at the "corner" of the L.
 
-![L-curve]({{"/assets/images/Complexity with sobolev reg.png" | relative_url }}){: .img-fluid .border .shadow }
+![L-curve]({{"/assets/images/L-curve for sobolev penalisation.png" | relative_url }}){: .img-fluid .border .shadow }
 *Figure 3: L-curve for an approximation of $$L=16$$.*
 {:.caption}
 
