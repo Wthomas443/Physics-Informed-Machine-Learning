@@ -134,25 +134,33 @@ Optimal values for regularisation parameter value $$\lambda$$ can be found using
 Using $$L = 9$$ and $$H^2$$ regularisation, the model captures broad scale temperature patterns, but struggles in unsampled regions (e.g., oceans, poles). 
 
 ![Major city data]({{"/assets/images/Major cities data.png" | relative_url }}){: .img-fluid .border .shadow }
-*Figure 4: Temperature mesurements in major cities on the globe over the month 07/2003*
+*Figure 4: Temperature mesurements in major cities on the globe over the month 07/2003 in degrees Celsisus*
 {:.caption}
 
 Errors over different folds of test data is plotted to find an optimal $\lamda$ value. This is because plotting the trade-off between the residual norm and the coefficient norm doesn't produce an $$L$$ shape for real data.
 
-![Major city lamda]({{"/assets/images/Major cities approx.png" | relative_url }}){: .img-fluid .border .shadow }
-*Figure 5: Resconstruction of the data in Figure 4*
+![Major city lamda]({{"/assets/images/Test errors major cities.png" | relative_url }}){: .img-fluid .border .shadow }
+*Figure 5: Test errors for different folds of data*
 {:.caption}
 
 ![Major city approx]({{"/assets/images/Major cities approx.png" | relative_url }}){: .img-fluid .border .shadow }
-*Figure 6: Resconstruction of the data in Figure 4*
+*Figure 6: Resconstruction of the data in Figure 4 in degrees Celsisus*
 {:.caption}
 
 ### 5.2 High-Resolution Dataset ($$n = 3510$$)
 
-Using $$L = 51$$ with the same framework yields improved detail and spatial resolution. Errors are reduced especially over land, demonstrating scalability.
+Using $$L = 51$$ with the same framework yields improved detail and spatial resolution demonstrating scalability. However errors are still evident over the ocean where unexpected temperatures are observed.
 
 ![City data]({{"/assets/images/Real data.png" | relative_url }}){: .img-fluid .border .shadow }
-*Figure 4: Temperature mesurements in all cities on the globe over the month 07/2003*
+*Figure 7: Temperature mesurements in all cities on the globe over the month 07/2003 in degrees Celsisus*
+{:.caption}
+
+![City data lambda]({{"/assets/images/lambda L=51.png" | relative_url }}){: .img-fluid .border .shadow }
+*Figure 8: Test errors for different folds of data*
+{:.caption}
+
+![City data reconstruction]({{"/assets/images/Real data.png" | relative_url }}){: .img-fluid .border .shadow }
+*Figure 9: Resconstruction of the data in Figure 7 in degrees Celsius*
 {:.caption}
 
 ---
