@@ -95,22 +95,31 @@ where $$M_k$$ is a diagonal matrix with $$(\ell(\ell+1))^k$$ on the diagonal.
 ---
 
 ## 4. Model Analysis with Synthetic Data
+The model can be tested using synthetic data. This data is created with a truncated series of spherical harmonics then noise is added from some normal distribution of values with mean $$0$$. It is found that to optimally approximate data created with a series truncated with value $$L$$, you need an approximation made with the same value $$L$$.
 
 ### 4.1 Varying $$L$$ and $$n$$
 
-For synthetic data constructed from a known series of harmonics, reconstruction error decreases with increased sample size $$n$$. The optimal value of $$L$$, the maximum degree of spherical harmonic used has the following apprximate relationship:
+For synthetic data constructed from a known series of harmonics, reconstruction error decreases with increased sample size $$n$$. The optimal value of $$L$$, the maximum degree of spherical harmonic used, has the following apprximate relationship:
 
 $$
 L \approx \frac{6}{7} \sqrt{n}.
 $$
 
 ![$$L$$ and $$n$$ relation]({{"/assets/images/n-vs-L.png" | relative_url }}){: .img-fluid .border .shadow }
-*Figure 1: Relationship between the optimal maximum degree of spherical harmonic $$L$$ and the number of data points $$n$$ for unregularised models*
+*Figure 1:The relationship between the optimal maximum degree of spherical harmonic $$L$$ and the number of data points $$n$$ for unregularised models*
 {:.caption}
+The blue line in Figure 1 shows the true relaationship, found from the experimental synthetic data.
 
 ### 4.2 Regularization Effects
 
 Without regularization, overfitting is observed as $$L$$ increases. Introducing regularisation with Sobolev seminorms (e.g., $$H^2$$) results in smoother reconstructions without the effects of overfitting.
+![Max degrees]({{"/assets/images/Complexity with sobolev reg.png" | relative_url }}){: .img-fluid .border .shadow }
+*Figure 2: Errors from approximations made with a regularised model and different values of $$L$$*
+{:.caption}
+Optimal values for regularisation parameter value $$\lambda$$ can be found using L-curves: a tradeoff graph ballencing the size of  the coefficients' norm and the residual norm. The optimal value being found at the "corner" of the L.
+![L-curve]({{"/assets/images/Complexity with sobolev reg.png" | relative_url }}){: .img-fluid .border .shadow }
+*Figure 3: L-curve for an approximation of $$L=16$$.*
+{:.caption}
 
 ---
 
