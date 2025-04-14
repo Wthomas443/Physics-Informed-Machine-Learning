@@ -137,10 +137,14 @@ Using $$L = 9$$ and $$H^2$$ regularisation, the model captures broad scale tempe
 *Figure 4: Temperature mesurements in major cities on the globe over the month 07/2003*
 {:.caption}
 
-Errors over different folds of test data is plotted to find an optimal $$\lamda$$ value. This is because plotting the trade-off between the residual norm and the coefficient norm doesn't produce an $$L$$ shape for real data.
+Errors over different folds of test data is plotted to find an optimal $\lamda$ value. This is because plotting the trade-off between the residual norm and the coefficient norm doesn't produce an $$L$$ shape for real data.
+
+![Major city lamda]({{"/assets/images/Major cities approx.png" | relative_url }}){: .img-fluid .border .shadow }
+*Figure 5: Resconstruction of the data in Figure 4*
+{:.caption}
 
 ![Major city approx]({{"/assets/images/Major cities approx.png" | relative_url }}){: .img-fluid .border .shadow }
-*Figure 5: Resconstruction of the data in Figure 4*
+*Figure 6: Resconstruction of the data in Figure 4*
 {:.caption}
 
 ### 5.2 High-Resolution Dataset ($$n = 3510$$)
