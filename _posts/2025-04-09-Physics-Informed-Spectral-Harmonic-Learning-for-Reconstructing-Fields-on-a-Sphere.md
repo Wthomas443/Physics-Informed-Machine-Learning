@@ -104,6 +104,23 @@ $$
 L \approx \frac{6}{7} \sqrt{n}.
 $$
 
+![Spherical Harmonics Visualization](/assets/images/section4/loglog-max-degree-vs-no-points.png){: .img-fluid .border .shadow }
+*Figure 1: Relationship between the optimal maximum degree of spherical harmonic $$L$$ and the number of data points $$n$$ for unregularised models*
+{:.caption}
+
+<!-- With responsive sizing -->
+<picture>
+  <source 
+    srcset="/assets/images/section4/loglog-max-degree-vs-no-points.png"
+    type="image/webp">
+  <img 
+    src="/assets/images/section4/loglog-max-degree-vs-no-points.png" 
+    alt="$$L$$ and $$n$$ relation"
+    loading="lazy"
+    width="800" 
+    height="600">
+</picture>
+
 ### 4.2 Regularization Effects
 
 Without regularization, overfitting is observed as $$L$$ increases. Introducing regularisation with Sobolev seminorms (e.g., $$H^2$$) results in smoother reconstructions without the effects of overfitting.
