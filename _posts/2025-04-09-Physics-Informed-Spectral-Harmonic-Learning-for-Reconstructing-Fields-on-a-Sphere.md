@@ -18,10 +18,10 @@ The study finds that spherical harmonics provide a highly efficient basis for sp
 ## 2. Spherical Harmonics
 
 ### 2.1 Spherical Harmonic Basis Functions
-Spherical harmonics are defined as:
+Spherical harmonics are defined as $$Y^{\ell}_{m}(\vartheta, \varphi):S^2\rightarrow \mathbb{C}$$ with:
 
 $$
-Y^{\ell}_{m}:S^2\rightarrow \mathbb{C}, \hspace{1cm} Y^{\ell}_{m}(\vartheta,\varphi) = \sqrt{\frac{2\ell+1}{4\pi}\frac{(\ell-m)!}{(\ell+m)!}}P_{\ell m}(\cos\vartheta)e^{im\varphi}.
+Y^{\ell}_{m}(\vartheta,\varphi) = \sqrt{\frac{2\ell+1}{4\pi}\frac{(\ell-m)!}{(\ell+m)!}}P_{\ell m}(\cos\vartheta)e^{im\varphi}.
 $$
 
 They exhibit spectral properties and form an orthonormal basis on a sphere. Any function on the sphere $$S^2 = \{(\vartheta,\varphi) \mid \vartheta \in [0, \pi],  \varphi \in [0, 2\pi)\}$$ can be written as an expansion of spherical harmonics:
@@ -137,7 +137,7 @@ Using $$L = 9$$ and $$H^2$$ regularisation, the model captures broad scale tempe
 *Figure 4: Temperature mesurements in major cities on the globe over the month 07/2003 in degrees Celsisus*
 {:.caption}
 
-Errors over different folds of test data is plotted to find an optimal $\lamda$ value. This is because plotting the trade-off between the residual norm and the coefficient norm doesn't produce an $$L$$ shape for real data.
+Errors over different folds of test data is plotted to find an optimal $$\lamda$$ value. This is because plotting the trade-off between the residual norm and the coefficient norm doesn't produce an $$L$$ shape for real data.
 
 ![Major city lamda]({{"/assets/images/Test errors major cities.png" | relative_url }}){: .img-fluid .border .shadow }
 *Figure 5: Test errors for different folds of data*
@@ -159,7 +159,7 @@ Using $$L = 51$$ with the same framework yields improved detail and spatial reso
 *Figure 8: Test errors for different folds of data*
 {:.caption}
 
-![City data reconstruction]({{"/assets/images/Real data.png" | relative_url }}){: .img-fluid .border .shadow }
+![City data reconstruction]({{"/assets/images/cities climate L=51.png" | relative_url }}){: .img-fluid .border .shadow }
 *Figure 9: Resconstruction of the data in Figure 7 in degrees Celsius*
 {:.caption}
 
