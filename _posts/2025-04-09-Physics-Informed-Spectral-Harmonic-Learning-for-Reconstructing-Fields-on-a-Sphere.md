@@ -109,7 +109,7 @@ $$
 *Figure 1:The relationship between the optimal maximum degree of spherical harmonic $$L$$ and the number of data points $$n$$ for unregularised models*
 {:.caption}
 
-The blue line in Figure 1 shows the true relaationship, found from the experimental synthetic data.
+The blue line in Figure 1 shows the true relationship, found from the experimental synthetic data.
 
 ### 4.2 Regularisation Effects
 
