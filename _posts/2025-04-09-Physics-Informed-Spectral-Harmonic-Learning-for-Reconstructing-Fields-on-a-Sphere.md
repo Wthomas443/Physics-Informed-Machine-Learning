@@ -216,20 +216,37 @@ Data Quality Issues:
 
 ## 8. Conclusion
 
-This work proposes a spectral learning framework based on spherical harmonics and vector harmonics for reconstructing fields on the sphere. Key contributions include:
-
-- Use of Sobolev seminorm regularization in spectral fitting
-- Empirical validation of $$L$$–$$n$$ scaling laws
-- Application to real climate data
-- Extension to incompressible vector fields
+ The investigation successfully develops and applies a machine learning model which converges
+ to a true solution $$f(\vartheta, \varphi)$$ given some data. The first application, reconstructing a scalar field to
+ predict global temperatures is largely successful with a major limitation being the lack of data
+ over oceanic areas. Further work would be to ensure the solution obeys the Heat Equation.
+ Currently this is technically challenging due to the effects of insolation, which varies around
+ the globe with time. Insolation is the solar radiation that reaches the Earth’s atmosphere
+ and surface, consequently heating the planet. Insolation can be largely dependent on cloud
+ coverage as clouds are responsible for the reflection of significant amounts of light and heat.
+ Further, the investigation successfully found a choice of basis function that could make
+ reconstructions of vector fields on a sphere in an expansion. This basis, the vector spherical
+ harmonics, automatically satisfied the divergence free property. The results from using the
+ approximation with real data were less conclusive than those in Section 4, being unable to
+ successfully find a unique regularisation parameter which minimised the error without overly
+ regularising and smoothing out the solution. This could have been due to a multitude of
+ factors, as discussed in Section 6, including the wind data being significantly more complex
+ than the climate data used in Section 4 resulting in a much higher value of L being required.
+ An excessively large L is problematic as, for example, a value of L = 140 results in AHA
+ having a shape 19,881×19,881 which, for a commercially available consumer grade computer,
+ results in a memory error.
+ It would also seem sensible to next make temporal reconstructions of the data. Choices of
+ basis functions to use in an expansion that could be considered are Laplace basis functions, or
+ better Laguerre Polynomials as they maintain orthogonality over the domain [0,∞).
+ This method of reconstructing data evidently has significant potential for use in climate
+ modeling, however it is not limited only to this application and could be applied to any scalar
+ or vector field on a surface that could be considered spherical.
 
 ### Future Work
 
 - Add time dependence (e.g., Fourier or Laguerre expansions)
-- Explore non-spherical geometries
-- Use Bayesian formulations for uncertainty quantification
-- Investigate adaptive spectral refinement
+- Explore uncertanty measures
+- Optimise regularisation parameter and gradient being penalised to minimise uncertainty
 
-### References
 
 ---
